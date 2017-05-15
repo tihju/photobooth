@@ -14,15 +14,22 @@ main{
     display: flex;
     flex-direction: row;
     flex-grow: 1;
+    align-self: stretch;
 }
 
+hr{
+  /*color: #7B503F;*/
+  display: block;
+  border-style: inset;
+  /*background-color: #7B503F;*/
+}
 
+nav{
+  display: flex;
+  flex-direction: column;
+}
 button{
-  width: 200px;
-  /*width: auto;*/
+  width: 100px;
   height: 40px;
-  /*align-items: baseline;*/
-  align-self: center;
-  background-color: #7B503F;
   color: white;
 }
