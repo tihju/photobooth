@@ -1,0 +1,28 @@
+/*css for photobooth.html*/
+
+body{
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  min-height: 100vh;
+  /*align-items: center;
+  justify-content: center;*/
+  color: #7B503F;
+}
+
+main{
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
+}
+
+
+button{
+  width: 200px;
+  /*width: auto;*/
+  height: 40px;
+  /*align-items: baseline;*/
+  align-self: center;
+  background-color: #7B503F;
+  color: white;
+}
