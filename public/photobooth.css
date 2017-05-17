@@ -1,5 +1,18 @@
 /*css for photobooth.html*/
 
+/*the font is not working!*/
+@font-face {
+	font-family:"GoudyStd","GoudyStd-Italic","GoudyStd-BoldItalic","GoudyStd-Bold";
+	src:
+		url(photobooth/fontGoudy/GoudyStd.otf),
+		url(photobooth/fontGoudy/GoudyStd-Italic.otf)，
+		url(photobooth/fontGoudy/GoudyStd-BoldItalic.otf)，
+		url(photobooth/fontGoudy/GoudyStd-Bold.otf)；
+  font-stretch: expanded;
+  font-style: normal;
+
+}
+
 body{
   display: flex;
   flex-direction: column;
@@ -8,32 +21,37 @@ body{
   align-items: center;
   justify-content: center;
   color: #7B503F;
+  font-family: "GoudyStd","GoudyStd-Italic","GoudyStd-BoldItalic","GoudyStd-Bold";
+
 }
 
-/*main{
-    max-width: 50%;
-}*/
+main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
-h1{
+div#welcome{
   text-align: center;
-  /*color: brown;*/
-  /*font-size: 50px;*/
-  padding-bottom: 10px;
+  font-size: 50px;
+  font-weight: bold;
 }
 
 button{
-  width: 200px;
-  /*width: auto;*/
-  height: 40px;
+  width: 150px;
+  height: 50px;
   /*align-items: baseline;*/
   align-self: center;
   background-color: #7B503F;
   color: white;
+  margin: 30px;
+  margin-bottom: 40px;
+  font-size: 25px;
 }
 
 p{
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
+  margin: 0;
+  margin-top: 5px;
+  font-weight: 550;
+  font-size: 25px;
 }
