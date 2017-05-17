@@ -18,5 +18,4 @@ function uploadImage() {
     console.log(oReq.responseText);
   }
   oReq.send(formData);
-
 }
