@@ -1,5 +1,6 @@
 <!doctype HTML>
 <html>
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
@@ -8,32 +9,37 @@
 </head>
 
 <body>
-  <img id="headerImg" src="photobooth/photoboothLogo.png" alt="no image"/>
+  <img id="headerImg" src="photobooth/photoboothLogo.png" alt="no image" />
 
   <hr>
   <main>
-  <div class="pictures">
-    <!--there should be three images here-->
-    <img src="" alt="no image">
-    <img src="" alt="no image">
-    <img src="" alt="no image">
-  </div>
-  <nav>
-    <div class="nav">
-    <img class="navImage" src="photobooth/uploadIcon-01.png" alt="no image">
-    <button>upload</button>
-  </div>
+    <div class="pictures">
+      <!--there should be three images here-->
+      <img src="" alt="no image">
+      <img src="" alt="no image">
+      <img src="" alt="no image">
+    </div>
+    <nav>
+      <div class="nav">
+        <img class="navImage" src="photobooth/uploadIcon-01.png" alt="no image">
+        <button>>upload</button>
+        <input type="file" id="fileSelector">Choose File</input>
+        <button id="uploadButton" onclick="uploadImage()">upload</button>
 
-    <div class="nav">
-    <img class="navImage" src="photobooth/filterIcon-01.png" alt="no image">
-    <input type="search" placeholder="filter"></input>
-  </div>
+      </div>
 
-  <div class="nav">
-    <img class="navImage" src="photobooth/favoritesIcon.png" alt="no image">
-    <button>favorites</button>
-  </div>
-  </nav>
-</main>
+      <div class="nav">
+        <img class="navImage" src="photobooth/filterIcon-01.png" alt="no image">
+        <input type="search" placeholder="filter"></input>
+      </div>
+
+      <div class="nav">
+        <img class="navImage" src="photobooth/favoritesIcon.png" alt="no image">
+        <button>favorites</button>
+      </div>
+    </nav>
+  </main>
+  <script src="photoboothMain.js"></script>
 </body>
+
 </html>
