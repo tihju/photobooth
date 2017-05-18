@@ -35,7 +35,12 @@ hr{
 
 div.pictures{
   margin-top: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  flex-wrap: wrap;
 }
+
 
 nav{
   display: flex;
@@ -44,6 +49,16 @@ nav{
   /*align-self: flex-end;*/
   margin-left: auto;
   width: 20%;
+}
+
+div#showForUpload{
+  display: flex;
+  flex-direction: column;
+  /*margin-left: 15px;
+  margin-top: 15px;*/
+  /*margin: 10px;*/
+  background-color: #CAB9B2;
+  display: none;
 }
 
 img.navImage{
@@ -66,11 +81,55 @@ input{
   height: 100%;
 }
 
-button{
+button.firstLevel{
   width: 100px;
   height: 40px;
   color: white;
   background-color: Transparent;
   border: none;
   font-size: 20px;
+}
+
+button#uploadButton{
+  width: 70px;
+  height: 30px;
+  margin-top: 20px;
+  background-color: #7B503F;
+  color: white;
+  /*border-color: black;*/
+  font-size: 15px;
+  margin: 10px;
+}
+
+label{
+  cursor: pointer;
+  width: 100px;
+  height: 30px;
+  background-color: #7B503F;
+  color: white;
+  margin:10px;
+  padding-top: 10px;
+}
+
+ input#fileSelector{
+  opacity:0;
+  position: absolute;
+  z-index: -1;
+}
+
+div.indiPicture{
+  display: flex;
+  flex-direction: column;
+  /*justify-content: center;*/
+  align-items: flex-start;
+}
+
+div.indiPicture button{
+  background-color: #7B503F;
+  color: white;
+  width: 40px;
+}
+
+div.indiPicture label{
+  background-color: grey;
 }
