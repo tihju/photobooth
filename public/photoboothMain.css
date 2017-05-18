@@ -122,6 +122,8 @@ div.indiPicture{
   flex-direction: column;
   /*justify-content: center;*/
   align-items: flex-start;
+  margin: 10px;
+  flex-shrink: 0;
 }
 
 div.indiPicture button{
@@ -133,3 +135,32 @@ div.indiPicture button{
 div.indiPicture label{
   background-color: grey;
 }
+
+div.indiPicture img{
+  width: 200px;
+  height: 200px;
+}
+
+div.addButton{
+  display: inline-block;
+  position: relative;
+}
+
+input.buttons{
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  border: none;
+  background-color: transparent;
+  background: url('photobooth/optionsTriangle.png');
+  background-repeat: no-repeat;
+  background-position: right;
+  height: 55px;
+  width: 55px;
+}
+
+/*button.buttons img{
+  width: auto;
+  height: 35px;
+  position: absolute;
+}*/
