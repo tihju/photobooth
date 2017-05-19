@@ -18,10 +18,19 @@
       <div class="indiPicture">
         <div class="addButton">
           <img src="photobooth/favoritesIcon.png" alt="no image">
+            
+            <div id="showForOption">
+                <div class="option"> change tags </div>
+                <hr class="optionLine">
+                <div class="option"> add to favorites </div>
+                <hr class="optionLine">
+            </div>
+          
           <form name="myform" action="" method="get">
-            <input type="button" class="buttons" onclick="showFullMenu(this.form)"/>
+            <input type="button" id="optionButton" class="buttons" onclick="showFullMenu(this.form)"/>
           <!--img src="photobooth/optionsTriangle.png" alt="no image"><button-->
           </form>
+
         </div>
         <!--menu bar-->
         <!--div class="overlay">
