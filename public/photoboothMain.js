@@ -1,7 +1,7 @@
 var control = { clicked : 0};
 
 function uploadImage() {
-  var url = "http://138.68.25.50:10316";
+  var url = "http://138.68.25.50:8066";
   var selectedFile = document.getElementById('fileSelector').files[0];
   var formData = new FormData();
   formData.append("userfile", selectedFile);
