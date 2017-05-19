@@ -29,5 +29,16 @@ function showUpload(){
 }
 
 function showFullMenu(){
-  console.log("test if onclick works.");
+  //console.log("test if onclick works.");
+  var y = document.getElementById('showForOption');
+  console.log(control.clicked);
+
+  if(control.clicked === 0){
+    y.style.display = 'block';
+    control.clicked = 1;
+  }else{
+    y.style.display = 'none';
+    control.clicked = 0;
+  }
+
 }

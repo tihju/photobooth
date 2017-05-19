@@ -29,7 +29,6 @@ hr{
   /*color: #7B503F;*/
   margin: 0;
   border: 1px solid #7B503F;
-
   width: 100%;
 }
 
@@ -155,7 +154,8 @@ div.indiPicture img{
 }
 
 div.addButton{
-  display: inline-block;
+  display: inline-flex;
+  flex-direction: row;
   position: relative;
 }
 
@@ -170,6 +170,29 @@ input.buttons{
   background-position: right;
   height: 55px;
   width: 55px;
+}
+
+div#showForOption{
+  display: flex;
+  flex-direction: column;
+  background-color: #7B503F;
+  display: none;
+}
+
+div.option{
+  background-color: #7B503F;
+  color: white;
+  padding: 5px;
+}
+
+hr.optionLine{
+  border: 1px solid black;
+}
+
+img.optionImg{
+  height: 55px;
+  width: 55px;
+  background-color: #7B503F;
 }
 
 /*button.buttons img{
