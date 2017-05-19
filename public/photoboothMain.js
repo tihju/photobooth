@@ -27,3 +27,7 @@ function showUpload(){
     control.clicked = 0;
   }
 }
+
+function showFullMenu(){
+  console.log("test if onclick works.");
+}
