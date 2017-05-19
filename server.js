@@ -1,10 +1,16 @@
+/* use the express framwork */
 var express = require("express");
+
+//for parsing forms and reading in the images
 var formidable = require('formidable');
 
+//make a new express server object
 var app = express();
 
+//static files
 app.use(express.static('public'));
 
+//queries
 app.get('/query', function(request, response) {
   console.log("query");
   query = request.url.split("?")[1]; // get query string
@@ -15,6 +21,7 @@ app.get('/query', function(request, response) {
   }
 });
 
+//upload images
 app.post('/', function(request, response) {
   var form = new formidable.IncomingForm();
   form.parse(request); // figures out what files are in form
@@ -34,8 +41,21 @@ app.post('/', function(request, response) {
 
 });
 
-
-
 //app.get();
 
 app.listen(10316);
+
+
+//making a database
+var sqlite3 = require("sqlite3").verbose(); //use sqlite
+var dbFile = "photos.db";
+
+//makes the object that represents the database in our code
+var db = new sqlite3.Database(dbFile);
+
+// If not, initialize it
+var cmdStr = "CREATE TABLE PhotoLabels (fileName TEXT UNIQUE NOT NULL PRIMARY KEY, labels TEXT, favorite INTEGER)"
+
+db.run(cmdStr);
+
+
