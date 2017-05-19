@@ -62,7 +62,7 @@ div#showForUpload{
 }
 
 img.navImage{
-  width: 45px;
+  width: 48px;
   height: 45px;
   overflow: hidden;
   background-color: Transparent;
@@ -70,8 +70,8 @@ img.navImage{
 }
 
 img.navImage2{
-  width: 35px;
-  height: 35px;
+  width: 38px;
+  height: 38px;
   overflow: hidden;
   background-color: Transparent;
   border: none;
@@ -177,6 +177,10 @@ div#showForOption{
   flex-direction: column;
   background-color: #7B503F;
   display: none;
+  position: absolute;
+  right: 0px;
+  top: 80px;
+  border: 1px solid black;
 }
 
 div.option{
