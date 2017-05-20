@@ -47,7 +47,7 @@ nav{
   background-color: #7B503F;
   /*align-self: flex-end;*/
   margin-left: auto;
-  width: 50%;
+  width: 30%;
 }
 
 div#showForUpload{
@@ -155,7 +155,7 @@ div.indiPicture img{
 
 div.addButton{
   display: inline-flex;
-  flex-direction: row;
+  flex-direction: column;
   position: relative;
 }
 
@@ -175,28 +175,44 @@ input.buttons{
 div#showForOption{
   display: flex;
   flex-direction: column;
-  background-color: #7B503F;
+  background-color: #885541;
   display: none;
   position: absolute;
   right: 0px;
-  top: 80px;
+  bottom: 0px;
   border: 1px solid black;
 }
 
-div.option{
-  background-color: #7B503F;
+.optionform{
+  display: flex;
+  flex-direction: column;
+}
+
+.options{
+  border: none;
+  background-color: transparent;
   color: white;
-  padding: 5px;
+  margin: 0;
+  text-align: left;
+  height: 30px;
+  font-size: 8pt;
+  font-weight: bold;
 }
 
-hr.optionLine{
-  border: 1px solid black;
-}
-
-img.optionImg{
+#optionButton2{
+  margin: auto;
+  padding-left: 100px;
+  border:none;
+  background-color: transparent;
+  background: url('photobooth/optionsTriangle.png');
+  background-repeat: no-repeat;
+  background-position: right;
   height: 55px;
   width: 55px;
-  background-color: #7B503F;
+}
+
+.optionLine{
+  border: 1px solid black;
 }
 
 /*button.buttons img{

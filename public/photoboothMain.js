@@ -1,7 +1,7 @@
 var control = { clicked : 0};
 
 function uploadImage() {
-  var url = "http://138.68.25.50:8066";
+  var url = "http://138.68.25.50:8078";
   var selectedFile = document.getElementById('fileSelector').files[0];
   var formData = new FormData();
   formData.append("userfile", selectedFile);
@@ -31,14 +31,18 @@ function showUpload(){
 function showFullMenu(){
   //console.log("test if onclick works.");
   var y = document.getElementById('showForOption');
+  var optionBut = document.getElementById('optionButton1');
+
   console.log(control.clicked);
 
   if(control.clicked === 0){
     y.style.display = 'block';
+    optionBut.style.display = 'none';
     control.clicked = 1;
   }else{
     y.style.display = 'none';
     control.clicked = 0;
+    optionBut.style.display = 'block';
   }
 
 }
