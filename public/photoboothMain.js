@@ -33,8 +33,12 @@ var control = { clicked : 0};
 
 function uploadImage() {
 
+<<<<<<< HEAD
   // var url = "http://138.68.25.50:8066";
   var url = "http://138.68.25.50:10316";
+
+  // var url = "http://138.68.25.50:8078";
+
 
   //where we find the file handle
 
@@ -89,9 +93,17 @@ function showFullMenu(){
 
 // i images
 function addLabels(i){
-  var x = document.getElementsByClassName('indilable');
-  var y = document.getElementsByClassName('labelList');
-  y[i].innerHTML += " " + x[i].value;
+
+  let ImgURL = "http://138.68.25.50:8078/photobooth/removeTagButton.png";
+
+  var x = document.getElementsByClassName('indilable');
+  var y = document.getElementsByClassName('labelList');
+
+  y[i].innerHTML += "<img src='"  + ImgURL + "' class='removeButton' onclick='remove(" + i + ")'>" + x[i].value;
+}
+
+function remove(i){
+
 }
 
 
