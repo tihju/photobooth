@@ -33,7 +33,7 @@ var control = { clicked : 0};
 
 function uploadImage() {
 
-<<<<<<< HEAD
+
   // var url = "http://138.68.25.50:8066";
   var url = "http://138.68.25.50:10316";
 
