@@ -8,6 +8,7 @@
   <link rel="stylesheet" type="text/css" href="photoboothMain.css">
 </head>
 
+<!--body onload="getDataBase()"-->
 <body>
   <img id="headerImg" src="photobooth/photoboothLogo.png" alt="no image"/>
 
@@ -26,6 +27,7 @@
                   <input type="button" class="options" value="change tags">
                   <hr class="optionLine">
                   <input type="button" class="options" value="add to favorites">
+                  <!--onclick="addToFavorites()"-->
                   <hr class="optionLine">
                   <input type="button" id="optionButton2" onclick="showFullMenu(this.form)"/>
                 </div>
@@ -35,8 +37,6 @@
           <form name="myform" action="" method="get">
             <input type="button" id="optionButton1" class="buttons" onclick="showFullMenu(this.form)"/>
           </form>
-
-
         </div>
 
         <!--label></label-->

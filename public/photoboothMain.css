@@ -220,7 +220,7 @@ div.labels{
   flex-direction: column;
   align-items: baseline;
   width: 200px;
-  
+  /*border: black;*/
 }
 
 p.labelList{

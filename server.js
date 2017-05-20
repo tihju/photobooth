@@ -38,6 +38,7 @@ app.post('/', function(request, response) {
   form.on('fileBegin', function(name, file) {
     // put it in /public
     file.path = __dirname + '/public/assets/' + file.name;
+    // file.path = __dirname + '/public/photobooth/' + file.name;
     fileName = file.name;
     console.log("uploading ", file.name, name);
   });
@@ -76,5 +77,6 @@ function errorCallback(err) {
 
 //app.get();
 
-app.listen(8066);
+// app.listen(8066);
+app.listen(10316);
 

@@ -1,7 +1,39 @@
 var control = { clicked : 0};
 
+//this is to hold datas
+// var datas = {};
+
+//this is for the number of rows/pictures in database
+// var numOfPic = 0;
+
+
+//getting the whole contents of the database;
+// function getDataBase(){
+//   var url = "http://138.68.25.50:10316/query?op=";
+//   var oReq = new XMLHttpRequest();
+//   //create the function to be excuted when the server respond is ready
+//   oReq.onreadystate = function(){
+//     if(this.readyStryte == 4 && this.status == 200){
+//       data = this.responseText;
+//     }
+//   };
+//   oReq.open("GET", "select * from Photobooth", true);
+//   oReq.send();
+// }
+
+//get the count  of pictures
+// function countRows(callback){
+//   data.transaction(function(tx){
+//     tx.executeSql('SELECT id FROM table', [], function(tx,results){
+//       var len = results.rows.length;
+//       callback(len);
+//     });
+//   });
+// }
+
 function uploadImage() {
 
+  // var url = "http://138.68.25.50:8066";
   var url = "http://138.68.25.50:10316";
 
   //where we find the file handle
@@ -61,3 +93,11 @@ function addLabels(i){
   var y = document.getElementsByClassName('labelList');
   y[i].innerHTML += " " + x[i].value;
 }
+
+
+// function addToFavorites(imgName){
+//   var url = "http://138.68.25.50:10316/query?img=" + imgNmae;
+//   console.log("not implemented");
+//   send a request
+//   var oReq = new XMLHttpRequest();
+// }
