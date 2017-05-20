@@ -19,7 +19,7 @@
         <div class="addButton">
           <img src="photobooth/favoritesIcon.png" alt="no image">
 
-            
+
             <div id="showForOption">
               <form name="Optionform" action="" method="get">
                 <div class="optionform">
@@ -31,7 +31,7 @@
                 </div>
               </form>
             </div>
-          
+
           <form name="myform" action="" method="get">
             <input type="button" id="optionButton1" class="buttons" onclick="showFullMenu(this.form)"/>
           </form>
@@ -39,8 +39,15 @@
 
         </div>
 
-        <label></label>
-        <button>Add</button>
+        <!--label></label-->
+        <!--for holding strings-->
+        <div class="labels">
+          <p class="labelList">
+          </p>
+          <input type="text" class="indilable" />
+        </div>
+        <button onclick="addLabels(0)">Add</button>
+
       </div>
 
     </div>

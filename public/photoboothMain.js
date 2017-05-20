@@ -1,14 +1,11 @@
 var control = { clicked : 0};
 
 function uploadImage() {
-<<<<<<< HEAD
+
   var url = "http://138.68.25.50:10316";
 
   //where we find the file handle
 
-=======
-  var url = "http://138.68.25.50:8078";
->>>>>>> dcbbd2dd7be0c89c9f95c7042033b4722419eebf
   var selectedFile = document.getElementById('fileSelector').files[0];
   var formData = new FormData();
   formData.append("userfile", selectedFile);
@@ -56,4 +53,11 @@ function showFullMenu(){
     optionBut.style.display = 'block';
   }
 
+}
+
+// i images
+function addLabels(i){
+  var x = document.getElementsByClassName('indilable');
+  var y = document.getElementsByClassName('labelList');
+  y[i].innerHTML += " " + x[i].value;
 }

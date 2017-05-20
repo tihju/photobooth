@@ -172,7 +172,7 @@ input.buttons{
   width: 55px;
 }
 
-/*div#showForOption{
+div#showForOption{
   display: flex;
   flex-direction: column;
   background-color: #885541;
@@ -181,7 +181,7 @@ input.buttons{
   right: 0px;
   bottom: 0px;
   border: 1px solid black;
-}*/
+}
 
 .optionform{
   display: flex;
@@ -215,16 +215,27 @@ input.buttons{
   border: 1px solid black;
 }
 
-/*button.buttons img{
-  width: auto;
-  height: 35px;
-  position: absolute;
-}*/
-
-/*form.extendMenu{
-  position: absolute;
-  right: 0;
-  bottom: 0;
+div.labels{
   display: flex;
   flex-direction: column;
-}*/
+  align-items: baseline;
+  width: 200px;
+  
+}
+
+p.labelList{
+  display: block;
+  width: 200px;
+  background-color: grey;
+  margin-bottom: 0;
+}
+
+input.indilable{
+  display: inline;
+  width: 200px;
+  height: 25px;
+  background-color: pink;
+  margin-left: 0;
+  padding: 0;
+  border: 0;
+}
