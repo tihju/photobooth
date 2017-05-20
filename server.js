@@ -4,11 +4,13 @@ var express = require("express");
 //for parsing forms and reading in the images
 var formidable = require('formidable');
 
+//making database
 var sqlite3 = require("sqlite3").verbose(); // use sqlite
 var dbFile = "photos.db";
 var db = new sqlite3.Database(dbFile);
 var cmdStr = "CREATE TABLE IF NOT EXISTS Photobooth (fileName TEXT UNIQUE NOT NULL PRIMARY KEY, labels TEXT, favorite INTEGER)"
 db.run(cmdStr, errorCallback);
+
 
 var app = express();
 
@@ -53,6 +55,7 @@ app.post('/', function(request, response) {
 
 function insertToDB(fileName) {
   var db = new sqlite3.Database(dbFile);
+  //1 for favorite and 0 for not favorite.
   var sqlQuery = [fileName, " ", "0"];
   console.log(sqlQuery);
   db.serialize(function() {

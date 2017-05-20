@@ -172,7 +172,7 @@ input.buttons{
   width: 55px;
 }
 
-div#showForOption{
+/*div#showForOption{
   display: flex;
   flex-direction: column;
   background-color: #7B503F;
@@ -181,7 +181,7 @@ div#showForOption{
   right: 0px;
   top: 80px;
   border: 1px solid black;
-}
+}*/
 
 div.option{
   background-color: #7B503F;
@@ -203,4 +203,12 @@ img.optionImg{
   width: auto;
   height: 35px;
   position: absolute;
+}*/
+
+/*form.extendMenu{
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
 }*/
