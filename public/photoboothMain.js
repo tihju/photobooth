@@ -1,10 +1,14 @@
 var control = { clicked : 0};
 
 function uploadImage() {
+<<<<<<< HEAD
   var url = "http://138.68.25.50:10316";
 
   //where we find the file handle
 
+=======
+  var url = "http://138.68.25.50:8078";
+>>>>>>> dcbbd2dd7be0c89c9f95c7042033b4722419eebf
   var selectedFile = document.getElementById('fileSelector').files[0];
   var formData = new FormData();
   formData.append("userfile", selectedFile);
@@ -38,14 +42,18 @@ function showUpload(){
 function showFullMenu(){
   //console.log("test if onclick works.");
   var y = document.getElementById('showForOption');
+  var optionBut = document.getElementById('optionButton1');
+
   console.log(control.clicked);
 
   if(control.clicked === 0){
     y.style.display = 'block';
+    optionBut.style.display = 'none';
     control.clicked = 1;
   }else{
     y.style.display = 'none';
     control.clicked = 0;
+    optionBut.style.display = 'block';
   }
 
 }
