@@ -225,8 +225,8 @@ div.labels{
 p.labelList{
   display: flex;
   flex-direction: row;
-  /*height: 50px;*/
-  /*width: 200px;*/
+  max-width: 200px;
+  flex-wrap: wrap;
   background-color: grey;
   margin-bottom: 0;
   font-size: 15pt;
