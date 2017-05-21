@@ -232,7 +232,8 @@ div.labelList{
   min-width: 200px;
   max-width: 200px;
   flex-wrap: wrap;
-  background-color: #CAB9B2;
+  /*background-color: #CAB9B2;*/
+  background-color: white;
   margin-bottom: 0;
   font-size: 15pt;
   border: 1px solid black;
@@ -255,4 +256,8 @@ img.removeButton{
   padding-top: 8px;
   padding-right: 1px;
   padding-left: 5px;
+}
+
+#showForChange{
+  display: none;
 }
