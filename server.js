@@ -1,3 +1,4 @@
+portNum = 8066
 /* use the express framwork */
 var express = require("express");
 
@@ -52,6 +53,20 @@ app.post('/', function(request, response) {
 
 });
 
+app.get('/fetchPictures', function(req,res){
+  db.serialize(function() {
+    db.all("SELECT * FROM Photobooth", getCallback);
+  })
+  function getCallback(err,rows){
+    if (err){
+      console.log(err);
+    }else{
+        res.send(rows);
+    }
+
+  }
+});
+
 
 
 function insertToDB(fileName) {
@@ -77,6 +92,4 @@ function errorCallback(err) {
 
 //app.get();
 
-// app.listen(8066);
-app.listen(10316);
-
+app.listen(portNum);
