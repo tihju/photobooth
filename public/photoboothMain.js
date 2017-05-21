@@ -1,4 +1,13 @@
-var control = { clicked : 0};
+portNum = 8066;
+
+
+var control = {
+    clicked: 0
+};
+
+var imageCount = {
+    count: 0
+};
 
 //this is to hold datas
 // var datas = {};
@@ -32,77 +41,107 @@ var control = { clicked : 0};
 // }
 
 function uploadImage() {
+    var selectedFile = document.getElementById('fileSelector').files[0];
+    var imageId = imageCount.count++;
 
+    readFileAndFading(selectedFile,imageId);
 
-  // var url = "http://138.68.25.50:8066";
-  var url = "http://138.68.25.50:10316";
-
-  // var url = "http://138.68.25.50:8078";
-
-
-  //where we find the file handle
-
-  var selectedFile = document.getElementById('fileSelector').files[0];
-  var formData = new FormData();
-  formData.append("userfile", selectedFile);
-
-  var oReq = new XMLHttpRequest();
-  //POST requests contain data in the body
-  //the "true" is the default for the third param, so
-  //it is often omitted; it means do the upload asynochornously, that is
-  //using a callback instead of blocking until the operation is conpleted.
-  oReq.open("POST", url);
-  oReq.onload = function() {
-    console.log(oReq.responseText);
-  }
-  oReq.send(formData);
 
 }
 
-function showUpload(){
-  var x = document.getElementById('showForUpload');
-  console.log(control.clicked);
+function uploadImageToServer(selectedFile,imageId){
+    var url = "http://138.68.25.50:" + portNum;
 
-  if(control.clicked === 0){
-    x.style.display = 'block';
-    control.clicked = 1;
-  }else{
-    x.style.display = 'none';
-    control.clicked = 0;
-  }
+    var formData = new FormData();
+
+    // upload file to server
+    formData.append("userfile", selectedFile);
+    var oReq = new XMLHttpRequest();
+
+    oReq.open("POST", url);
+    oReq.onload = function () {
+        console.log(oReq.responseText);
+        unFade(imageId);
+
+    }
+    oReq.send(formData);
 }
 
-function showFullMenu(){
-  //console.log("test if onclick works.");
-  var y = document.getElementById('showForOption');
-  var optionBut = document.getElementById('optionButton1');
-
-  console.log(control.clicked);
-
-  if(control.clicked === 0){
-    y.style.display = 'block';
-    optionBut.style.display = 'none';
-    control.clicked = 1;
-  }else{
-    y.style.display = 'none';
-    control.clicked = 0;
-    optionBut.style.display = 'block';
-  }
+function unFade(imageID){
+    var img = document.getElementById('imageFile' + imageID);
+    img.style.opacity = 1;
 
 }
 
-// i images
-function addLabels(i){
+// read from local
+function readFileAndFading(selectedFile,imageId) {
 
-  let ImgURL = "http://138.68.25.50:8078/photobooth/removeTagButton.png";
+    var fr = new FileReader();
 
-  var x = document.getElementsByClassName('indilable');
-  var y = document.getElementsByClassName('labelList');
+    fr.onload = function () {
+        setPictureBlock(fr.result,imageId);
+    };
+    fr.readAsDataURL(selectedFile);
 
-  y[i].innerHTML += "<img src='"  + ImgURL + "' class='removeButton' onclick='remove(" + i + ")'>" + x[i].value;
 }
 
-function remove(i){
+// get html file from server and set it
+function setPictureBlock(selectedFile,imageId) {
+    var oReq = new XMLHttpRequest();
+    var url = "indipicture.html";
+    oReq.open("GET", url);
+    oReq.onload = function () {
+
+        var pictures = document.getElementsByClassName("pictures")[0];
+
+
+        var indipicture = document.createElement('div');
+        indipicture.setAttribute('class', 'indipicture');
+
+        indipicture.innerHTML = oReq.responseText;
+        pictures.appendChild(indipicture);
+
+        var img = document.getElementById('imageFile');
+        img.setAttribute('id', 'imageFile' + imageId);
+        img.setAttribute('src', selectedFile);
+        img.setAttribute('alt', "no image");
+        img.style.opacity = 0.5;
+
+        uploadImageToServer(selectedFile,imageId);
+
+    }
+    oReq.send();
+
+}
+
+
+
+
+function showUpload() {
+    var x = document.getElementById('showForUpload');
+    console.log(control.clicked);
+
+    if (control.clicked === 0) {
+        x.style.display = 'block';
+        control.clicked = 1;
+    } else {
+        x.style.display = 'none';
+        control.clicked = 0;
+    }
+}
+
+function showFullMenu() {
+    //console.log("test if onclick works.");
+    var y = document.getElementById('showForOption');
+    console.log(control.clicked);
+
+    if (control.clicked === 0) {
+        y.style.display = 'block';
+        control.clicked = 1;
+    } else {
+        y.style.display = 'none';
+        control.clicked = 0;
+    }
 
 }
 
