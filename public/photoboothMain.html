@@ -19,7 +19,7 @@
       <div class="indiPicture"> <!-- 1 photo-->
         <div class="addButton">
           <img class="photo1" src="photobooth/favoritesIcon.png" alt="no image">
-            <div id="showForOption">
+            <div class="showForOption">
               <form name="Optionform" action="" method="get">
                 <div class="optionform">
                   <input type="button" class="options" value="change tags">
@@ -27,13 +27,13 @@
                   <input type="button" class="options" value="add to favorites">
                   <!--onclick="addToFavorites()"-->
                   <hr class="optionLine">
-                  <input type="button" id="optionButton2" onclick="showFullMenu(this.form)"/>
+                  <input type="button" class="optionButton2" onclick="showFullMenu(this.form)"/>
                 </div>
               </form>
             </div>
 
           <form name="myform" action="" method="get">
-            <input type="button" id="optionButton1" class="buttons" onclick="showFullMenu(this.form)"/>
+            <input type="button" class="buttons" onclick="showFullMenu(0,this.form)"/>
           </form>
         </div>
 

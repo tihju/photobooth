@@ -171,7 +171,7 @@ input.buttons{
   width: 55px;
 }
 
-div#showForOption{
+div.showForOption{
   display: flex;
   flex-direction: column;
   background-color: #885541;
@@ -198,7 +198,7 @@ div#showForOption{
   font-weight: bold;
 }
 
-#optionButton2{
+.optionButton2{
   margin: auto;
   padding-left: 100px;
   border:none;

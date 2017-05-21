@@ -130,16 +130,16 @@ function showUpload() {
     }
 }
 
-function showFullMenu() {
+function showFullMenu(i) {
     //console.log("test if onclick works.");
-    var y = document.getElementById('showForOption');
+    var y = document.getElementsByClassName('showForOption');
     console.log(control.clicked);
 
     if (control.clicked === 0) {
-        y.style.display = 'block';
+        y[i].style.display = 'block';
         control.clicked = 1;
     } else {
-        y.style.display = 'none';
+        y[i].style.display = 'none';
         control.clicked = 0;
     }
 
@@ -152,3 +152,16 @@ function showFullMenu() {
 //   send a request
 //   var oReq = new XMLHttpRequest();
 // }
+
+function addLabels(i){
+  // var ImgURL = "http://138.68.25.50:10316/photobooth/removeTagButton.png";
+   var ImgURL = "photobooth/removeTagButton.png";
+  var x = document.getElementsByClassName('indilable');
+  var y = document.getElementsByClassName('labelList');
+
+  y[i].innerHTML += "<img src='"  + ImgURL + "' class='removeButton' onclick='remove(" + i + ")'>" + x[i].value;
+}
+
+function remove(i){
+
+}
