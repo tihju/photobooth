@@ -193,14 +193,18 @@ function changeTag(){
   var res = s.split(" ");
 
   //each label add a delete image;
-  for(i = 0; i < res.length(); i++){
+  if(res){
+    for(i = 0; i < res.length; i++){
   
      var addDiv = makeDiv(pLabel);
   
      var addImg = makeImg(addDiv);
   
      var addSpan = makeSpan(addDiv);
+     addSpan.innerHTML = res[i];
+    }
   }
+
 }
 
 //update database of favorite
