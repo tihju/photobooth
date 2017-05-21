@@ -9,6 +9,10 @@ var imageCount = {
     count: 0
 };
 
+var labelCount = {
+  num: 0
+};
+
 //this is to hold datas
 // var datas = {};
 
@@ -157,11 +161,45 @@ function addLabels(i){
   // var ImgURL = "http://138.68.25.50:10316/photobooth/removeTagButton.png";
    var ImgURL = "photobooth/removeTagButton.png";
   var x = document.getElementsByClassName('indilable');
+  //this is for the p tag
   var y = document.getElementsByClassName('labelList');
 
-  y[i].innerHTML += "<img src='"  + ImgURL + "' class='removeButton' onclick='remove(" + i + ")'>" + x[i].value;
-}
+  var addDiv = document.createElement("div");
+  addDiv.className = "deleteLabel";
+  y[i].appendChild(addDiv);
 
-function remove(i){
+  //create a img tag
+  var addImg = document.createElement("img");
+  addImg.src = ImgURL;
+  addImg.className = "removeButton";
 
+  addDiv.appendChild(addImg);
+
+  //this may not need
+  var addSpan = document.createElement("span");
+  addDiv.appendChild(addSpan);
+
+  //<img src="ImgURL" class="remveButton" onclick="remove(i)>"
+  //this i is which image you want to edit.
+  // y[i].innerHTML += "<img src='"  + ImgURL + "' class='removeButton' onclick='remove(" + labelCount.num + ")'>" + x[i].value;
+  addSpan.innerHTML += " " + x[i].value;
+
+
+  addImg.onclick = function(){
+    if(addDiv.style.display === "none"){
+      addDiv.style.display = "block";
+    }else{
+      addDiv.style.display="none";
+    }
+    //get the string that want to delete.
+    // var divDelete = document.getElementsByClassName('deleteLabel');
+  //   if(divDelete[labelCount.num].style.display === "none"){
+  //     divDelete[labelCount.num].style.display = "display";
+  //   }else{
+  //     divDelete[labelCount.num].style.display = "none";
+  // }
+};
+
+  //increment number of labels
+  labelCount.num++;
 }

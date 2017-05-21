@@ -203,9 +203,10 @@ div.showForOption{
   padding-left: 100px;
   border:none;
   background-color: transparent;
-  background: url('photobooth/optionsTriangle.png');
+  /*this is not needed!*/
+  /*background: url('photobooth/optionsTriangle.png');
   background-repeat: no-repeat;
-  background-position: right;
+  background-position: right;*/
   height: 55px;
   width: 55px;
 }
@@ -242,7 +243,7 @@ input.indilable{
   border: 0;
 }
 
-.removeButton{
+img.removeButton{
   height: 10px;
   width: 10px;
   padding-top: 8px;
