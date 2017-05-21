@@ -190,6 +190,7 @@ function changeTag(){
 
   //get the labels of the pictures
   var pLabel = document.getElementById('p');
+  pLabel.style.backgroundColor = "#CAB9B2";
   var s = pLabel.innerHTML;
 
   //list of labels
