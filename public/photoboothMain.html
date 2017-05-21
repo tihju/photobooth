@@ -8,93 +8,53 @@
   <link rel="stylesheet" type="text/css" href="photoboothMain.css">
 </head>
 
+<!--body onload="getDataBase()"-->
 <body>
   <img id="headerImg" src="photobooth/photoboothLogo.png" alt="no image"/>
 
   <hr>
   <main>
-    <div class="pictures">
-      <!--there should be three images here-->
-      <div class="indiPicture">
+    <div class="pictures"> <!-- contain all the photos -->
+
+      <div class="indiPicture"> <!-- 1 photo-->
         <div class="addButton">
-          <img src="photobooth/favoritesIcon.png" alt="no image">
-            
-            <div id="showForOption">
-                <div class="option"> change tags </div>
-                <hr class="optionLine">
-                <div class="option"> add to favorites </div>
-                <hr class="optionLine">
+          <img class="photo1" src="photobooth/favoritesIcon.png" alt="no image">
+            <div class="showForOption" id="fullMenu">
+              <form name="Optionform" action="" method="get">
+                <div class="optionform">
+                  <input type="button" class="options" value="change tags" onclick="changeTag()">
+                  <hr class="optionLine">
+                  <input type="button" class="options" value="add to favorites">
+                  <!--onclick="addToFavorites()"-->
+                  <hr class="optionLine">
+                  <input type="button" class="optionButton2"/>
+                </div>
+              </form>
             </div>
-          
+
           <form name="myform" action="" method="get">
-            <input type="button" id="optionButton" class="buttons" onclick="showFullMenu(this.form)"/>
-          <!--img src="photobooth/optionsTriangle.png" alt="no image"><button-->
+            <input type="button" class="buttons"  onclick="showFullMenu(this.form)"/>
           </form>
+        </div>
+
+
+        <!--for changing labels-->
+        <div class="labels">
+          <div class="labelList" id="p">
+            <!-- for holding labels form database-->
+            <!--in js we add
+            <div>
+              <img>lable
+            </div-->
+          </div>
+
+          <div id="showForChange">
+            <input type="text" class="indilable" id="labelInput"/>
+            <button id="button" onclick="addLabels()">Add</button>
+          </div>
 
         </div>
-        <!--menu bar-->
-        <!--div class="overlay">
-          <img>
-        </div-->
-        <label></label>
-        <button>Add</button>
-      </div>
 
-      <div class="indiPicture">
-        <img src="" alt="no image">
-        <!--div class="overlay">
-          <img>
-        </div-->
-        <label></label>
-        <button>Add</button>
-      </div>
-
-      <div class="indiPicture">
-        <img src="photobooth/removeTagButton.png" alt="no image">
-        <label></label>
-        <button>Add</button>
-      </div>
-
-      <div class="indiPicture">
-        <img src="photobooth/photoboothLogo.png" alt="no image">
-        <label></label>
-        <button>Add</button>
-      </div>
-
-      <div class="indiPicture">
-        <img src="photobooth/photoboothLogo.png" alt="no image">
-        <label></label>
-        <button>Add</button>
-      </div>
-
-      <div class="indiPicture">
-        <img src="" alt="no image">
-        <label></label>
-        <button>Add</button>
-      </div>
-
-      <div class="indiPicture">
-        <img src="" alt="no image">
-        <label></label>
-        <button>Add</button>
-      </div>
-
-      <div class="indiPicture">
-        <img src="" alt="no image">
-        <label></label>
-        <button>Add</button>
-      </div>
-
-      <div class="indiPicture">
-        <img src="" alt="no image">
-        <label></label>
-        <button>Add</button>
-      </div>
-
-      <div class="indiPicture">
-        <img src="" alt="no image">
-        <label></label>
-        <button>Add</button>
       </div>
 
     </div>
