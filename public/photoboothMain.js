@@ -128,15 +128,18 @@ function addLabels(){
   //this is for the p tag
   var y = document.getElementById('p');
 
-  var addDiv = makeDiv(y);
+  if(x.value != ""){
 
-  var addImg = makeImg(addDiv);
+    var addDiv = makeDiv(y);
 
-  var addSpan = makeSpan(addDiv);
+    var addImg = makeImg(addDiv);
 
-  //in here, user add a labels, please update databasehere as well
-  //may need to check if the x[i].value is empty!
-  addSpan.innerHTML += " " + x.value;
+    var addSpan = makeSpan(addDiv);
+
+    //in here, user add a labels, please update databasehere as well
+    //may need to check if the x[i].value is empty!
+    addSpan.innerHTML += " " + x.value;
+  }
 
   //delete labels
   //please update database here as well
@@ -193,7 +196,7 @@ function changeTag(){
   var res = s.split(" ");
 
   //each label add a delete image;
-  if(res){
+  if(!res){
     for(i = 0; i < res.length; i++){
 
       var addDiv = makeDiv(pLabel);
