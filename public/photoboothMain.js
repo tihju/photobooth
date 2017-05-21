@@ -2,7 +2,8 @@ portNum = 8066;
 
 
 var control = {
-    clicked: 0
+    clicked: 0,
+    clicked1: 0
 };
 
 var imageCount = {
@@ -103,50 +104,39 @@ function showUpload() {
     }
 }
 
-function showFullMenu(i) {
+function showFullMenu() {
     //console.log("test if onclick works.");
-    var y = document.getElementsByClassName('showForOption');
-    console.log(control.clicked);
+    var y = document.getElementById('fullMenu');
+    console.log(control.clicked1);
 
-    if (control.clicked === 0) {
-        y[i].style.display = 'block';
-        control.clicked = 1;
+    if (control.clicked1 === 0) {
+        y.style.display = 'block';
+        control.clicked1 = 1;
     } else {
-        y[i].style.display = 'none';
-        control.clicked = 0;
+        y.style.display = 'none';
+        control.clicked1 = 0;
     }
 
 }
 
-function addLabels(i){
+function addLabels(){
   //we need to put the image to every lables from the database as well.
-  //no need to do double containers!! orhterwise, we can delete labels from database.
+  //no need to do double containers!! orhterwise, we can not delete labels from database.
   //not sure about this part!
 
-  // var ImgURL = "http://138.68.25.50:10316/photobooth/removeTagButton.png";
-   var ImgURL = "photobooth/removeTagButton.png";
-  var x = document.getElementsByClassName('indilable');
+  var x = document.getElementById('labelInput');
   //this is for the p tag
-  var y = document.getElementsByClassName('labelList');
+  var y = document.getElementById('p');
 
-  var addDiv = document.createElement("div");
-  addDiv.className = "deleteLabel";
-  y[i].appendChild(addDiv);
+  var addDiv = makeDiv(y);
 
-  //create a img tag
-  var addImg = document.createElement("img");
-  addImg.src = ImgURL;
-  addImg.className = "removeButton";
+  var addImg = makeImg(addDiv);
 
-  addDiv.appendChild(addImg);
-
-  //this may not need
-  var addSpan = document.createElement("span");
-  addDiv.appendChild(addSpan);
+  var addSpan = makeSpan(addDiv);
 
   //in here, user add a labels, please update databasehere as well
   //may need to check if the x[i].value is empty!
-  addSpan.innerHTML += " " + x[i].value;
+  addSpan.innerHTML += " " + x.value;
 
   //delete labels
   //please update database here as well
@@ -162,11 +152,56 @@ function addLabels(i){
   labelCount.num++;
 }
 
+function makeDiv(y){
+  //create div tag
+  var addDiv = document.createElement("div");
+  addDiv.className = "deleteLabel";
+  y.appendChild(addDiv);
+  return addDiv;
+}
+
+function makeImg(addDiv){
+  // var ImgURL = "http://138.68.25.50:10316/photobooth/removeTagButton.png";
+   var ImgURL = "photobooth/removeTagButton.png";
+  var addImg = document.createElement("img");
+  addImg.src = ImgURL;
+  addImg.className = "removeButton";
+
+  addDiv.appendChild(addImg);
+  return addImg;
+}
+
+function makeSpan(addDiv){
+  var addSpan = document.createElement("span");
+  addDiv.appendChild(addSpan);
+  return addSpan;
+}
+
 //when changeTag call, show the whole div.labels container
 //maybe in here, we get every labels from database a X sign
 //and show the input tag and button.
+//i here is which picture's labels need to edit.
 function changeTag(){
-  var showchangeTag
+  var showAddInput = document.getElementById('showForChange');
+  showAddInput.style.display = "block";
+
+  //get the labels of the pictures
+  // var pLabel = document.getElementById('p');
+  // var s = pLabel.innerHTML;
+  //
+  // //list of labels
+  // var res = s.split(" ");
+
+  //each label add a delete image;
+  // for(i = 0; i < res.length(); i++){
+  //
+  //   var addDiv = makeDiv(pLabel);
+  //
+  //   var addImg = makeImg(addDiv);
+  //
+  //   var addSpan = makeSpan(addDiv);
+  // }
+
 
 }
 
