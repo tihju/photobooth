@@ -1,4 +1,4 @@
-portNum = 8066;
+portNum = 8078;
 
 
 var control = {
@@ -193,19 +193,14 @@ function changeTag(){
   var res = s.split(" ");
 
   //each label add a delete image;
-  if(res){
-    for(i = 0; i < res.length; i++){
-
-      var addDiv = makeDiv(pLabel);
-
-      var addImg = makeImg(addDiv);
-
-      var addSpan = makeSpan(addDiv);
-      addSpan.innerHTML = res[i];
-    }
+  for(i = 0; i < res.length(); i++){
+  
+     var addDiv = makeDiv(pLabel);
+  
+     var addImg = makeImg(addDiv);
+  
+     var addSpan = makeSpan(addDiv);
   }
-
-
 }
 
 //update database of favorite

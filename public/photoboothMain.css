@@ -222,26 +222,31 @@ div.labels{
   width: 200px;
   /*display: none;*/
   /*border: black;*/
+  padding-top: 25px;
 }
 
-p.labelList{
+div.labelList{
   display: flex;
   flex-direction: row;
+  min-height: 30px;
+  min-width: 200px;
   max-width: 200px;
   flex-wrap: wrap;
-  background-color: grey;
+  background-color: #CAB9B2;
   margin-bottom: 0;
   font-size: 15pt;
+  border: 1px solid black;
 }
 
 input.indilable{
   display: inline;
   width: 200px;
   height: 25px;
-  background-color: pink;
+  background-color: white;
   margin-left: 0;
   padding: 0;
   border: 0;
+  border: 1px solid black;
 }
 
 img.removeButton{
@@ -250,8 +255,4 @@ img.removeButton{
   padding-top: 8px;
   padding-right: 1px;
   padding-left: 5px;
-}
-
-div.showForAdd{
-  display: none;
 }
