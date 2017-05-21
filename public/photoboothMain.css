@@ -220,6 +220,7 @@ div.labels{
   flex-direction: column;
   align-items: baseline;
   width: 200px;
+  /*display: none;*/
   /*border: black;*/
 }
 

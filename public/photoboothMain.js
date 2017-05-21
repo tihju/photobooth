@@ -13,37 +13,6 @@ var labelCount = {
   num: 0
 };
 
-//this is to hold datas
-// var datas = {};
-
-//this is for the number of rows/pictures in database
-// var numOfPic = 0;
-
-
-//getting the whole contents of the database;
-// function getDataBase(){
-//   var url = "http://138.68.25.50:10316/query?op=";
-//   var oReq = new XMLHttpRequest();
-//   //create the function to be excuted when the server respond is ready
-//   oReq.onreadystate = function(){
-//     if(this.readyStryte == 4 && this.status == 200){
-//       data = this.responseText;
-//     }
-//   };
-//   oReq.open("GET", "select * from Photobooth", true);
-//   oReq.send();
-// }
-
-//get the count  of pictures
-// function countRows(callback){
-//   data.transaction(function(tx){
-//     tx.executeSql('SELECT id FROM table', [], function(tx,results){
-//       var len = results.rows.length;
-//       callback(len);
-//     });
-//   });
-// }
-
 function uploadImage() {
     var selectedFile = document.getElementById('fileSelector').files[0];
     var imageId = imageCount.count++;
@@ -149,15 +118,11 @@ function showFullMenu(i) {
 
 }
 
-
-// function addToFavorites(imgName){
-//   var url = "http://138.68.25.50:10316/query?img=" + imgNmae;
-//   console.log("not implemented");
-//   send a request
-//   var oReq = new XMLHttpRequest();
-// }
-
 function addLabels(i){
+  //we need to put the image to every lables from the database as well.
+  //no need to do double containers!! orhterwise, we can delete labels from database.
+  //not sure about this part!
+
   // var ImgURL = "http://138.68.25.50:10316/photobooth/removeTagButton.png";
    var ImgURL = "photobooth/removeTagButton.png";
   var x = document.getElementsByClassName('indilable');
@@ -179,27 +144,36 @@ function addLabels(i){
   var addSpan = document.createElement("span");
   addDiv.appendChild(addSpan);
 
-  //<img src="ImgURL" class="remveButton" onclick="remove(i)>"
-  //this i is which image you want to edit.
-  // y[i].innerHTML += "<img src='"  + ImgURL + "' class='removeButton' onclick='remove(" + labelCount.num + ")'>" + x[i].value;
+  //in here, user add a labels, please update databasehere as well
+  //may need to check if the x[i].value is empty!
   addSpan.innerHTML += " " + x[i].value;
 
-
+  //delete labels
+  //please update database here as well
   addImg.onclick = function(){
     if(addDiv.style.display === "none"){
       addDiv.style.display = "block";
     }else{
       addDiv.style.display="none";
     }
-    //get the string that want to delete.
-    // var divDelete = document.getElementsByClassName('deleteLabel');
-  //   if(divDelete[labelCount.num].style.display === "none"){
-  //     divDelete[labelCount.num].style.display = "display";
-  //   }else{
-  //     divDelete[labelCount.num].style.display = "none";
-  // }
-};
 
+};
   //increment number of labels
   labelCount.num++;
 }
+
+//when changeTag call, show the whole div.labels container
+//maybe in here, we get every labels from database a X sign
+//and show the input tag and button.
+function changeTag(){
+  var showchangeTag
+
+}
+
+//update database of favorite
+// function addToFavorites(imgName){
+//   var url = "http://138.68.25.50:10316/query?img=" + imgNmae;
+//   console.log("not implemented");
+//   send a request
+//   var oReq = new XMLHttpRequest();
+// }

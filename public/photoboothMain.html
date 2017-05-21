@@ -22,7 +22,7 @@
             <div class="showForOption">
               <form name="Optionform" action="" method="get">
                 <div class="optionform">
-                  <input type="button" class="options" value="change tags">
+                  <input type="button" class="options" value="change tags" onclick="changeTag()">
                   <hr class="optionLine">
                   <input type="button" class="options" value="add to favorites">
                   <!--onclick="addToFavorites()"-->
@@ -37,18 +37,23 @@
           </form>
         </div>
 
-        <!--label></label-->
-        <!--for holding strings-->
+
+        <!--for changing labels-->
         <div class="labels">
           <p class="labelList">
+            <!-- for holding labels form database-->
             <!--in js we add
             <div>
               <img>lable
             </div-->
           </p>
-          <input type="text" class="indilable" />
+
+          <div class="showForChange">
+            <input type="text" class="indilable" />
+            <button onclick="addLabels(0)">Add</button>
+          </div>
+
         </div>
-        <button onclick="addLabels(0)">Add</button>
 
       </div>
 
