@@ -186,21 +186,24 @@ function changeTag(){
   showAddInput.style.display = "block";
 
   //get the labels of the pictures
-  // var pLabel = document.getElementById('p');
-  // var s = pLabel.innerHTML;
-  //
-  // //list of labels
-  // var res = s.split(" ");
+  var pLabel = document.getElementById('p');
+  var s = pLabel.innerHTML;
+
+  //list of labels
+  var res = s.split(" ");
 
   //each label add a delete image;
-  // for(i = 0; i < res.length(); i++){
-  //
-  //   var addDiv = makeDiv(pLabel);
-  //
-  //   var addImg = makeImg(addDiv);
-  //
-  //   var addSpan = makeSpan(addDiv);
-  // }
+  if(res){
+    for(i = 0; i < res.length; i++){
+
+      var addDiv = makeDiv(pLabel);
+
+      var addImg = makeImg(addDiv);
+
+      var addSpan = makeSpan(addDiv);
+      addSpan.innerHTML = res[i];
+    }
+  }
 
 
 }

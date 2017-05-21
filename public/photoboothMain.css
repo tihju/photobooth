@@ -251,3 +251,7 @@ img.removeButton{
   padding-right: 1px;
   padding-left: 5px;
 }
+
+div.showForAdd{
+  display: none;
+}
