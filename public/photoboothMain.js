@@ -23,8 +23,6 @@ function uploadImage() {
   });
 
   readFileAndFading(selectedFile, imageId);
-
-
 }
 
 function uploadImageToServer(selectedFile, imageId) {
@@ -135,10 +133,7 @@ function createPictureBlock(fileName, id, labels, favorite) {
   //get the image path of server
   var src = "/assets/" + fileName;
   setPictureBlock(src, id);
-
-
 }
-
 
 
 function showUpload() {

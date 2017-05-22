@@ -328,11 +328,28 @@ img.removeButton{
 
 #MobileUpload{
   display: none;
+  background-color: #CAB9B2; 
 }
 
 .MobileUploadList{
   display: flex;
   flex-direction: column;
+  max-width: 150px;
+}
+
+#MobileuploadButton{
+  width: 70px;
+  height: 30px;
+  background-color: #7B503F;
+  color: white;
+  border:1px solid black;
+  font-size: 15px;
+  margin: 15px;
+}
+
+.MobileBut{
+  background-color: Transparent;
+  border: none;
 }
 
 @media (max-width: 480px){
