@@ -1,4 +1,4 @@
-portNum = 8078;
+portNum = 10316;
 /* use the express framwork */
 var express = require("express");
 
@@ -108,12 +108,12 @@ function answer(query, response) {
       console.log("error: ", err, "\n");
     } else {
       if (queryObj.op == "add") {
-        db.run('UPDATE Photobooth SET labels = ? WHERE fileName = ?', 
+        db.run('UPDATE Photobooth SET labels = ? WHERE fileName = ?',
                [data.labels + ";" + label, imageFile],
                updateCallback);
       }
       else if (queryObj.op == 'remove') {
-        db.run('UPDATE Photobooth SET labels = ? WHERE fileName = ?', 
+        db.run('UPDATE Photobooth SET labels = ? WHERE fileName = ?',
                [data.labels.replace(';' + label, ''), imageFile],
                updateCallback);
       }
@@ -176,35 +176,7 @@ function answer(query, response) {
 	  	}
 	}
 
-	//if query = "/query?op=del&img=" + imageName + "&label=" + labelToEdit
-	// if(queryObj.op == "del"){
-	// 	var delLabel = queryObj.lebel;
-	// 	var imageName = queryObj.img;
-	// 	if(delLabel && imageName){
-	// 		db.get(
-	// 			'SELECT labels FROM Photobooth WHERE fileName = ?', [imageFile], getLabelback);
-
-	// 		function getLabelback(){
-	// 			console.log("getting labels from " + imageFile);
-	// 	        if (err) {
-	// 	          console.log("error: ", err, "\n");
-	// 	        } else {
-	// 	          // good response...so let's update labels
-	// 	          db.run(
-	// 	            'UPDATE Photobooth SET labels = ? WHERE fileName = ?', [data.labels + " " + newLabel, imageFile],
-	// 	            updateCallback);
-	// 	        }
-	// 		}
-	// 	}
-	// }
 }
 
-
-
-
-//app.listen(8066);
-//app.listen(8078);
-//app.listen(10316);
-//app.get();
 
 app.listen(portNum);

@@ -1,4 +1,4 @@
-portNum = 8078;
+portNum = 10316;
 
 
 var control = {
@@ -21,8 +21,6 @@ function uploadImage() {
     imageName: selectedFile.name,
     favorite: 0
   });
-
-
 
   readFileAndFading(selectedFile, imageId);
 
@@ -161,10 +159,7 @@ function showFullMenu(id) {
   var num = id.replace("showFullMenuBtn","");
   var fullMenuId = id.replace("showFullMenuBtn", "fullMenu");
 
-
-
   var showFullMenuBtn = document.getElementById(fullMenuId);
-
 
   if (imageArray[num].showFullMenuClicked === 0) {
     showFullMenuBtn.style.display = 'block';
@@ -267,12 +262,10 @@ function makeSpan(addDiv) {
   return addSpan;
 }
 
-//when changeTag call, show the whole div.labels container
-//maybe in here, we get every labels from database a X sign
-//and show the input tag and button.
 function changeTag(id) {
-
+  //get the p tag
   var labelBlock = document.getElementById('labels' + id);
+  //the div that contains input and button.
   var showingBlock = document.getElementById('showForChange' + id);
 
   if (showingBlock.style.display != 'block') {
@@ -280,6 +273,7 @@ function changeTag(id) {
     labelBlock.style.borderBottom = '0px solid black';
     showingBlock.style.display = 'block';
 
+    //images with lables
     var removeButtons = labelBlock.getElementsByClassName('removeButton');
 
     for (var i = 0; i < removeButtons.length; i++) {
@@ -299,6 +293,7 @@ function changeTag(id) {
   }
 }
 
+//for the nav filter
 function showFilter(){
   var clicked = 0;
   var filterMenu = document.getElementById('showForFilter');
@@ -310,7 +305,7 @@ function showFilter(){
     filterWord.style.display = 'block';
     filter.style.display = 'none';
     clicked = 1;
-  } 
+  }
 }
 
 function showFilter2(){
@@ -324,10 +319,8 @@ function showFilter2(){
     filterWord.style.display = 'none';
     filter.style.display = 'block';
     clicked = 1;
-  } 
+  }
 }
-
-
 
 //fetch pictures from server when open main page.
 function fetchPictures() {
@@ -361,6 +354,7 @@ function fetchPictures() {
   oReq.send();
 }
 
+//show the upload file name
 function chooseFile(e) {
   document.getElementById('fileName').innerHTML = e.files[0].name;
 }
@@ -371,8 +365,16 @@ function addToFavorites(id){
   var num = id.replace("changeFavBtn", "");
   //know which image to update
   var imageName = imageArray[num].imageName;
+  var passVal = 0;
 
-  var query = "/query?op=fav&img=" + imageName + "&favorite=" + 1;
+  if(imageArray[num].favorite === 0){
+      passVal = 1;
+      imageArray[num].favorite = 1;
+  } else {
+      imageArray[num].favorite = 0;
+  }
+
+  var query = "/query?op=fav&img=" + imageName + "&favorite=" + passVal;
 
   var oReq = new XMLHttpRequest();
   oReq.open("GET", query);

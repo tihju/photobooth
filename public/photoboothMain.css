@@ -26,7 +26,6 @@ main{
 }
 
 hr{
-  /*color: #7B503F;*/
   margin: 0;
   border: 1px solid #7B503F;
   width: 100%;
@@ -36,7 +35,6 @@ div.pictures{
   margin-top: 10px;
   display: flex;
   flex-direction: row;
-  /*justify-content: space-around;*/
   flex-wrap: wrap;
 }
 
@@ -44,7 +42,6 @@ nav{
   display: flex;
   flex-direction: column;
   background-color: #885541;
-  /*align-self: flex-end;*/
   margin-left: auto;
   width: 40%;
 }
@@ -203,10 +200,6 @@ div.showForOption{
   padding-left: 100px;
   border:none;
   background-color: transparent;
-  /*this is not needed!*/
-  /*background: url('photobooth/optionsTriangle.png');
-  background-repeat: no-repeat;
-  background-position: right;*/
   height: 55px;
   width: 55px;
 }
@@ -299,7 +292,7 @@ img.removeButton{
   padding-left: 10px;
   font-size: 20px;
   border: none;
-  background-color:#885541; 
+  background-color:#885541;
 }
 
 .filterButtonList{
@@ -334,7 +327,7 @@ img.removeButton{
 }
 
 @media (max-width: 480px){
-  
+
   #menuBar,#divide{
     display: none;
   }
@@ -356,7 +349,7 @@ img.removeButton{
 
   .navImage2{
     margin-top: 4px;
-    margin-left: 2px; 
+    margin-left: 2px;
   }
 
 }
