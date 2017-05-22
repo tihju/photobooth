@@ -227,21 +227,41 @@ div.labels{
 p.labelList{
   display: flex;
   flex-direction: row;
+  min-height: 30px;
+  min-width: 200px;
   max-width: 200px;
   flex-wrap: wrap;
-  background-color: grey;
+  /* background-color: #CAB9B2; */
+  background-color: white;
   margin-bottom: 0;
   font-size: 15pt;
+  border-top: 1px solid black;
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+  border-bottom: 1px solid black;
+}
+
+.deleteLabel {
+  padding-left: 10px;
+  padding-right: 8px;
+}
+
+.showInput {
+  display: none;
 }
 
 input.indilable{
   display: inline;
   width: 200px;
   height: 25px;
-  background-color: pink;
+  background-color: white;
   margin-left: 0;
+  margin-bottom: 8px;
   padding: 0;
   border: 0;
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+  border-bottom: 1px solid black;
 }
 
 img.removeButton{
@@ -250,8 +270,5 @@ img.removeButton{
   padding-top: 8px;
   padding-right: 1px;
   padding-left: 5px;
-}
-
-div.showForAdd{
   display: none;
 }
