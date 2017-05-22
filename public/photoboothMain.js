@@ -194,6 +194,7 @@ function addLabels(id, text) {
   //may need to check if the x[i].value is empty!
 
   if (text === undefined) {
+    addDiv.getElementsByClassName('removeButton')[0].style.display = 'inline';
     addSpan.innerHTML += " " + labelInput.value;
     updateLabelsToDB(num, labelInput.value);
   } else {
