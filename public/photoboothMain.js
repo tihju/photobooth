@@ -148,7 +148,10 @@ function showUpload() {
 function showFullMenu(id) {
   //console.log("test if onclick works.");
 
+  var num = id.replace("showFullMenuBtn","");
   var fullMenuId = id.replace("showFullMenuBtn", "fullMenu");
+
+
 
   var showFullMenuBtn = document.getElementById(fullMenuId);
 
