@@ -5,6 +5,8 @@ body{
   flex-direction: column;
   flex-grow: 1;
   min-height: 100vh;
+  /*align-items: center;
+  justify-content: center;*/
   color: #7B503F;
 }
 
@@ -41,12 +43,15 @@ nav{
   flex-direction: column;
   background-color: #885541;
   margin-left: auto;
-  width: 50%;
+  width: 40%;
 }
 
 div#showForUpload{
   display: flex;
   flex-direction: column;
+  /*margin-left: 15px;
+  margin-top: 15px;*/
+  /*margin: 10px;*/
   background-color: #CAB9B2;
   display: none;
   padding-top: 25px;
@@ -123,6 +128,7 @@ input#fileSelector{
 div.indiPicture{
   display: flex;
   flex-direction: column;
+  /*justify-content: center;*/
   align-items: flex-start;
   margin: 20px;
   flex-shrink: 0;
@@ -207,6 +213,8 @@ div.labels{
   flex-direction: column;
   align-items: baseline;
   width: 200px;
+  /*display: none;*/
+  /*border: black;*/
 }
 
 p.labelList{
@@ -216,6 +224,7 @@ p.labelList{
   min-width: 200px;
   max-width: 200px;
   flex-wrap: wrap;
+  /* background-color: #CAB9B2; */
   background-color: white;
   margin-bottom: 0;
   font-size: 15pt;

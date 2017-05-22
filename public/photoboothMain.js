@@ -22,8 +22,6 @@ function uploadImage() {
     favorite: 0
   });
 
-
-
   readFileAndFading(selectedFile, imageId);
 
 
@@ -161,10 +159,7 @@ function showFullMenu(id) {
   var num = id.replace("showFullMenuBtn","");
   var fullMenuId = id.replace("showFullMenuBtn", "fullMenu");
 
-
-
   var showFullMenuBtn = document.getElementById(fullMenuId);
-
 
   if (imageArray[num].showFullMenuClicked === 0) {
     showFullMenuBtn.style.display = 'block';
@@ -326,8 +321,6 @@ function showFilter2(){
     clicked = 1;
   } 
 }
-
-
 
 //fetch pictures from server when open main page.
 function fetchPictures() {
