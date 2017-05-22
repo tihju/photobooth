@@ -109,12 +109,12 @@ function answer(query, response) {
     } else {
       if (queryObj.op == "add") {
         db.run('UPDATE Photobooth SET labels = ? WHERE fileName = ?',
-               [data.labels + " " + label, imageFile],
+               [data.labels + ";" + label, imageFile],
                updateCallback);
       }
       else if (queryObj.op == 'remove') {
         db.run('UPDATE Photobooth SET labels = ? WHERE fileName = ?',
-               [data.labels.replace(' ' + label, ' '), imageFile],
+               [data.labels.replace(';' + label, ''), imageFile],
                updateCallback);
       }
     }
