@@ -261,7 +261,6 @@ function makeSpan(addDiv) {
 //maybe in here, we get every labels from database a X sign
 //and show the input tag and button.
 function changeTag(id) {
-  console.log(id);
 
   var labelBlock = document.getElementById('labels' + id);
   var showingBlock = document.getElementById('showForChange' + id);
