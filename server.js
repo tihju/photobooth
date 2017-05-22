@@ -175,10 +175,6 @@ function answer(query, response) {
 		  	}
 	  	}
 	}
-<<<<<<< HEAD
-
-=======
->>>>>>> df8da95a3478537270ddeb0540435fb8a80df56f
 }
 
 
