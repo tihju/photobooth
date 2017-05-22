@@ -326,6 +326,9 @@ function fetchPictures() {
   oReq.send();
 }
 
+function chooseFile(e) {
+  document.getElementById('fileName').innerHTML = e.files[0].name;
+}
 
 
 //update database of favorite
