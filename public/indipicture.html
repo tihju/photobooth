@@ -1,30 +1,40 @@
-<div class="addButton">
-    <img id = "imageFile">
-
-    <div id="showForOption">
-        <form name="Optionform" action="" method="get">
-            <div class="optionform">
-                <input type="button" class="options" value="change tags">
-                <hr class="optionLine">
-                <input type="button" class="options" value="add to favorites">
-                <hr class="optionLine">
-                <input type="button" id="optionButton2" onclick="showFullMenu(this.form)"/>
-            </div>
-        </form>
+<div class="indiPicture">
+  <div class="addButton">
+    <img class="photo1" id = "imageFile">
+    <div class="showForOption" id="fullMenu">
+      <form name="Optionform" action="" method="get">
+        <div class="optionform">
+          <input type="button" class="options" value="change tags" id = "changeTagBtn" onclick="changeTag()">
+          <hr class="optionLine">
+          <input type="button" class="options" value="add to favorites" id = "changeFavBtn">
+          <!--onclick="addToFavorites()"-->
+          <hr class="optionLine">
+          <input type="button" class="optionButton2" />
+        </div>
+      </form>
     </div>
 
     <form name="myform" action="" method="get">
-        <input type="button" id="optionButton1" class="buttons" onclick="showFullMenu(this.form)"/>
+      <input type="button" class="buttons" id = "showFullMenuBtn" onclick="showFullMenu(this.id,this.form)" />
     </form>
+  </div>
 
 
-</div>
-
-<!--label></label-->
-<!--for holding strings-->
-<div class="labels">
-    <p class="labelList">
+  <!--for changing labels-->
+  <div class="labels">
+    <p class="labelList" id="labels">
+      <!-- for holding labels form database-->
+      <!--in js we add
+           <div>
+             <img>lable
+           </div-->
     </p>
-    <input type="text" class="indilable"/>
+
+    <div id="showForChange">
+      <input type="text" class="indilable" id="labelInput" />
+      <button id="addBtn" onclick="addLabels(this.id)">Add</button>
+    </div>
+
+  </div>
+
 </div>
-<button onclick="addLabels(0)">Add</button>
