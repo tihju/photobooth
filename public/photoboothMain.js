@@ -25,6 +25,7 @@ function uploadImage() {
 
 function uploadImageToServer(selectedFile,imageId){
     var url = "http://138.68.25.50:" + portNum;
+<<<<<<< HEAD
 
     var formData = new FormData();
 
@@ -87,9 +88,6 @@ function setPictureBlock(selectedFile,imageId) {
     oReq.send();
 
 }
-
-
-
 
 function showUpload() {
     var x = document.getElementById('showForUpload');
@@ -183,6 +181,7 @@ function makeSpan(addDiv){
 //i here is which picture's labels need to edit.
 function changeTag(){
   var showAddInput = document.getElementById('showForChange');
+<<<<<<< HEAD
 
   if (showAddInput.style.display == "block") {
     showAddInput.style.display = "";
