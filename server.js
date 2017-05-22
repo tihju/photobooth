@@ -143,7 +143,7 @@ function answer(query, response) {
       }
     }
   }
-  //if query looks like var query = "/query?op=fav&img=" + imageName + "&favorite=" + 1;
+  //if query looks like var query = "/query?op=fav&img=" + imageName + "&favorite=" + [0,1];
   if(queryObj.op == "fav"){
 	  	var isfav = queryObj.favorite;
 	  	var imageName = queryObj.img;
@@ -175,7 +175,10 @@ function answer(query, response) {
 		  	}
 	  	}
 	}
+<<<<<<< HEAD
 
+=======
+>>>>>>> df8da95a3478537270ddeb0540435fb8a80df56f
 }
 
 
