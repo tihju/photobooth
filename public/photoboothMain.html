@@ -15,9 +15,22 @@
   <hr id="divide">
 
   <div id="MenuForMobile"> <!--menu for Mobile Version -->
-    <button onclick="showUpload()"><img class="navImage" src="photobooth/uploadIcon-01.png" alt="no image"></button>
-    <button><img class="navImage" src="photobooth/filterIcon-01.png" alt="no image"></button>
-    <button><img class="navImage2" src="photobooth/favoritesIcon.png" alt="no image"></button>
+    
+      <div class="MobileUploadList">
+        <button class="MobileBut" onclick="showUpload2()"><img class="navImage" src="photobooth/uploadIcon-01.png" alt="no image"></button>
+
+        <div id="MobileUpload">
+          <br>
+          <label for="fileSelector">choose file...</label>
+          <br>
+          <div id="fileName2" class="fileName"></div>
+          <input type="file" id="fileSelector" onchange="chooseFile(this)">
+          <button id="MobileuploadButton" onclick="uploadImage()">upload</button>
+        </div>
+      </div>
+
+    <button class="MobileBut"><img class="navImage" src="photobooth/filterIcon-01.png" alt="no image"></button>
+    <button class="MobileBut"><img class="navImage2" src="photobooth/favoritesIcon.png" alt="no image"></button>
   </div>
 
   <main>
@@ -35,7 +48,7 @@
       <div id="showForUpload">
           <label for="fileSelector">choose file...</label>
           <br>
-          <div id="fileName"></div>
+          <div id="fileName" class="fileName"></div>
           <input type="file" id="fileSelector" onchange="chooseFile(this)">
         <button id="uploadButton" onclick="uploadImage()">upload</button>
       </div>

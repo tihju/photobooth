@@ -177,5 +177,4 @@ function answer(query, response) {
 	}
 }
 
-
 app.listen(portNum);
