@@ -264,14 +264,29 @@ function changeTag(id) {
   console.log(id);
 
   var labelBlock = document.getElementById('labels' + id);
-  var showing = document.getElementById('showForChange' + id);
+  var showingBlock = document.getElementById('showForChange' + id);
 
-  if (showing.style.display == 'none') {
-    showing.style.display == '';
-    
+  if (showingBlock.style.display != 'block') {
+    labelBlock.style.backgroundColor = '#CAB9B2';
+    labelBlock.style.borderBottom = '0px solid black';
+    showingBlock.style.display = 'block';
+
+    var removeButtons = labelBlock.getElementsByClassName('removeButton');
+
+    for (var i = 0; i < removeButtons.length; i++) {
+      removeButtons[i].style.display = 'inline';
+    }
   }
   else {
-    showing.style.display == '';
+    labelBlock.style.backgroundColor = 'white';
+    labelBlock.style.borderBottom = '1px solid black';
+    showingBlock.style.display = 'none';
+
+    var removeButtons = labelBlock.getElementsByClassName('removeButton');
+
+    for (var i = 0; i < removeButtons.length; i++) {
+      removeButtons[i].style.display = 'none';
+    }
   }
 }
 
