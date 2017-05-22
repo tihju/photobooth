@@ -200,11 +200,4 @@ function answer(query, response) {
 }
 
 
-
-
-//app.listen(8066);
-//app.listen(8078);
-//app.listen(10316);
-//app.get();
-
 app.listen(portNum);
