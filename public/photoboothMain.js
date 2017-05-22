@@ -8,13 +8,6 @@ var control = {
 
 var imageArray = new Array();
 
-var imageObject = {
-  id: -1,
-}
-
-var labelCount = {
-  num: 0
-};
 
 function uploadImage() {
   var selectedFile = document.getElementById('fileSelector').files[0];
@@ -24,7 +17,9 @@ function uploadImage() {
   imageArray.push({
     id: imageId,
     showFullMenuClicked: 0,
-    labelCount: 0
+    labels: "",
+    imageName: selectedFile.name,
+    favorite: 0
   });
 
 
@@ -65,7 +60,7 @@ function readFileAndFading(selectedFile, imageId) {
   var fr = new FileReader();
 
   fr.onload = function() {
-    setPictureBlock(fr.result, selectedFile, imageId);
+    setPictureBlock(fr.result, imageId, selectedFile);
   };
   fr.readAsDataURL(selectedFile);
 
@@ -73,7 +68,7 @@ function readFileAndFading(selectedFile, imageId) {
 }
 
 // get html file from server and set it
-function setPictureBlock(imageFile, selectedFile, imageId) {
+function setPictureBlock(imageFile, imageId, selectedFile) {
   var oReq = new XMLHttpRequest();
   var url = "indipicture.html";
   oReq.open("GET", url);
@@ -87,8 +82,18 @@ function setPictureBlock(imageFile, selectedFile, imageId) {
     pictures.appendChild(indipicture);
 
     changeTemplate(imageFile, imageId);
-
-    uploadImageToServer(selectedFile, imageId);
+    if (selectedFile !== undefined) {
+      uploadImageToServer(selectedFile, imageId);
+    } else {
+      unFade(imageId);
+      var labels = imageArray[imageId].labels;
+      var labelArr = labels.split(" ");
+      for (var i = 0; i < labelArr.length; i++) {
+        if (labelArr[i] != "") {
+          addLabels(imageId.toString(), labelArr[i]);
+        }
+      }
+    }
 
   }
   oReq.send();
@@ -110,7 +115,7 @@ function changeTemplate(imageFile, imageId) {
     'labels', 'showForChange', 'labelInput', 'addBtn'
   ];
 
-  for (i = 0; i < ids.length; i++) {
+  for (var i = 0; i < ids.length; i++) {
     var element = document.getElementById(ids[i]);
     element.setAttribute('id', ids[i] + imageId);
 
@@ -118,6 +123,13 @@ function changeTemplate(imageFile, imageId) {
 
 }
 
+
+function createPictureBlock(fileName, id, labels, favorite) {
+  var src = "/assets/" + fileName;
+  setPictureBlock(src, id);
+
+
+}
 
 
 
@@ -136,34 +148,34 @@ function showUpload() {
 function showFullMenu(id) {
   //console.log("test if onclick works.");
 
-  num = id.slice(-1);
+  var fullMenuId = id.replace("showFullMenuBtn", "fullMenu");
 
-  var showFullMenuBtn = document.getElementById('fullMenu' + num);
+  var showFullMenuBtn = document.getElementById(fullMenuId);
 
 
-  var clicked = imageArray[num].showFullMenuClicked;
-  if (clicked === 0) {
+  if (imageArray[num].showFullMenuClicked === 0) {
     showFullMenuBtn.style.display = 'block';
-    clicked = 1;
+    imageArray[num].showFullMenuClicked = 1;
   } else {
     showFullMenuBtn.style.display = 'none';
-    clicked = 0;
+    imageArray[num].showFullMenuClicked = 0;
   }
 
 }
 
-function addLabels(id) {
+function addLabels(id, text) {
   //we need to put the image to every lables from the database as well.
   //no need to do double containers!! orhterwise, we can delete labels from database.
   //not sure about this part!
 
   // var ImgURL = "http://138.68.25.50:10316/photobooth/removeTagButton.png";
 
-  num = id.slice(-1);
+  var num = id.replace("addBtn", "");
 
-  var labelInput = document.getElementById('labelInput'+num);
+
+  var labelInput = document.getElementById('labelInput' + num);
   //this is for the p tag
-  var labels = document.getElementById('labels'+num);
+  var labels = document.getElementById('labels' + num);
 
   var addDiv = makeDiv(labels);
 
@@ -173,7 +185,15 @@ function addLabels(id) {
 
   //in here, user add a labels, please update databasehere as well
   //may need to check if the x[i].value is empty!
-  addSpan.innerHTML += " " + labelInput.value;
+
+  if (text === undefined) {
+    addSpan.innerHTML += " " + labelInput.value;
+    updateLabelsToDB(num, labelInput.value);
+  } else {
+    addSpan.innerHTML += " " + text;
+  }
+
+
 
   //delete labels
   //please update database here as well
@@ -185,8 +205,23 @@ function addLabels(id) {
     }
 
   };
-  //increment number of labels
-  imageArray[num].labelCount++;
+
+}
+
+function updateLabelsToDB(num, labels) {
+  var imageName = imageArray[num].imageName;
+  var query = "/query?op=add&img=" + imageName + "&label=" + labels;
+
+  var oReq = new XMLHttpRequest();
+  oReq.open("GET", query);
+
+  oReq.onload = function() {
+    console.log(oReq.responseText);
+
+  }
+  oReq.send();
+
+
 }
 
 
@@ -230,11 +265,30 @@ function fetchPictures() {
   oReq.open("GET", url);
 
   oReq.onload = function() {
+
     console.log(oReq.responseText);
+
+    var jsonArr = JSON.parse(oReq.responseText);
+
+    for (var i = 0; i < jsonArr.length; i++) {
+      imageArray.push({
+        id: i,
+        showFullMenuClicked: 0,
+        labels: jsonArr[i].labels,
+        imageName: jsonArr[i].fileName,
+        favorite: jsonArr[i].favorite
+      });
+
+      createPictureBlock(jsonArr[i].fileName, i, jsonArr[i].labels, jsonArr[i].favorite);
+
+    }
+
 
   }
   oReq.send();
 }
+
+
 
 //update database of favorite
 // function addToFavorites(imgName){
