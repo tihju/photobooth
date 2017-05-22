@@ -5,8 +5,6 @@ body{
   flex-direction: column;
   flex-grow: 1;
   min-height: 100vh;
-  /*align-items: center;
-  justify-content: center;*/
   color: #7B503F;
 }
 
@@ -26,7 +24,6 @@ main{
 }
 
 hr{
-  /*color: #7B503F;*/
   margin: 0;
   border: 1px solid #7B503F;
   width: 100%;
@@ -36,7 +33,6 @@ div.pictures{
   margin-top: 10px;
   display: flex;
   flex-direction: row;
-  /*justify-content: space-around;*/
   flex-wrap: wrap;
 }
 
@@ -44,17 +40,13 @@ nav{
   display: flex;
   flex-direction: column;
   background-color: #885541;
-  /*align-self: flex-end;*/
   margin-left: auto;
-  width: 40%;
+  width: 50%;
 }
 
 div#showForUpload{
   display: flex;
   flex-direction: column;
-  /*margin-left: 15px;
-  margin-top: 15px;*/
-  /*margin: 10px;*/
   background-color: #CAB9B2;
   display: none;
   padding-top: 25px;
@@ -131,7 +123,6 @@ input#fileSelector{
 div.indiPicture{
   display: flex;
   flex-direction: column;
-  /*justify-content: center;*/
   align-items: flex-start;
   margin: 20px;
   flex-shrink: 0;
@@ -203,10 +194,6 @@ div.showForOption{
   padding-left: 100px;
   border:none;
   background-color: transparent;
-  /*this is not needed!*/
-  /*background: url('photobooth/optionsTriangle.png');
-  background-repeat: no-repeat;
-  background-position: right;*/
   height: 55px;
   width: 55px;
 }
@@ -220,8 +207,6 @@ div.labels{
   flex-direction: column;
   align-items: baseline;
   width: 200px;
-  /*display: none;*/
-  /*border: black;*/
 }
 
 p.labelList{
@@ -231,7 +216,6 @@ p.labelList{
   min-width: 200px;
   max-width: 200px;
   flex-wrap: wrap;
-  /* background-color: #CAB9B2; */
   background-color: white;
   margin-bottom: 0;
   font-size: 15pt;

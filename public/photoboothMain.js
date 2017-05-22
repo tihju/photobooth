@@ -1,4 +1,4 @@
-portNum = 10317;
+portNum = 8078;
 
 
 var control = {
@@ -92,7 +92,7 @@ function setPictureBlock(imageFile, imageId, selectedFile) {
     else {
       unFade(imageId);
       var labels = imageArray[imageId].labels;
-      var labelArr = labels.split(" ");
+      var labelArr = labels.split(";");
       for (var i = 0; i < labelArr.length; i++) {
         if (labelArr[i] != "" && labelArr[i] != " ") {
           addLabels(imageId.toString(), labelArr[i]);
@@ -251,7 +251,7 @@ function makeDiv(y) {
 }
 
 function makeImg(addDiv) {
-  // var ImgURL = "http://138.68.25.50:" + portNum +"public/photobooth/removeTagButton.png";
+  // var ImgURL = "http://138.68.25.50:10316/photobooth/removeTagButton.png";
   var ImgURL = "photobooth/removeTagButton.png";
   var addImg = document.createElement("img");
   addImg.src = ImgURL;
@@ -310,7 +310,7 @@ function showFilter(){
     filterWord.style.display = 'block';
     filter.style.display = 'none';
     clicked = 1;
-  }
+  } 
 }
 
 function showFilter2(){
@@ -324,7 +324,7 @@ function showFilter2(){
     filterWord.style.display = 'none';
     filter.style.display = 'block';
     clicked = 1;
-  }
+  } 
 }
 
 
@@ -375,10 +375,10 @@ function addToFavorites(id){
   var passVal = 0;
 
   if(imageArray[num].favorite === 0){
-    passVal = 1;
-    imageArray[num].favorite = 1;
-  }else{
-    imageArray[num].favorite = 0;
+      passVal = 1;
+      imageArray[num].favorite = 1;
+  } else {
+      imageArray[num].favorite = 0;
   }
 
   var query = "/query?op=fav&img=" + imageName + "&favorite=" + passVal;
