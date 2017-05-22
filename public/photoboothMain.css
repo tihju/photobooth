@@ -46,7 +46,7 @@ nav{
   background-color: #885541;
   /*align-self: flex-end;*/
   margin-left: auto;
-  width: 30%;
+  width: 40%;
 }
 
 div#showForUpload{
@@ -293,21 +293,44 @@ img.removeButton{
 }
 
 #FilterWord{
+  width: 100px;
+  height: 40px;
   color: white;
-  padding-left: 30px;
+  padding-left: 10px;
   font-size: 20px;
+  border: none;
+  background-color:#885541; 
+}
+
+.filterButtonList{
+  margin-top: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.filterButton{
+  width: 70px;
+  height: 30px;
+  background-color: #7B503F;
+  color: white;
+  border:1px solid black;
+  font-size: 11px;
 }
 
 #showForFilter{
   display: flex;
   flex-direction: column;
-  /*margin-left: 15px;
-  margin-top: 15px;*/
-  /*margin: 10px;*/
   background-color: #CAB9B2;
   display: none;
-  padding-top: 25px;
-  padding-bottom: 50px;
+  padding: 15px 10px 15px 10px;
+}
+
+#Secondfilter{
+  border:1px solid #7B503F;
+  height: 30px;
+  width: 82%;
+  margin-left: 20px;
 }
 
 @media (max-width: 480px){

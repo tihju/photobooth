@@ -310,11 +310,24 @@ function showFilter(){
     filterWord.style.display = 'block';
     filter.style.display = 'none';
     clicked = 1;
-  } else {
-    filterMenu.style.display = 'none';
-    clicked = 0;
-  }
+  } 
 }
+
+function showFilter2(){
+  var clicked = 0;
+  var filterMenu = document.getElementById('showForFilter');
+  var filterWord = document.getElementById('FilterWord');
+  var filter = document.getElementById('filter');
+
+  if (clicked === 0) {
+    filterMenu.style.display = 'none';
+    filterWord.style.display = 'none';
+    filter.style.display = 'block';
+    clicked = 1;
+  } 
+}
+
+
 
 //fetch pictures from server when open main page.
 function fetchPictures() {
