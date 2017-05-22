@@ -12,14 +12,22 @@
 <body onload="fetchPictures()">
   <img id="headerImg" src="photobooth/photoboothLogo.png" alt="no image"/>
 
-  <hr>
+  <hr id="divide">
+
+  <div id="MenuForMobile"> <!--menu for Mobile Version -->
+    <button onclick="showUpload()"><img class="navImage" src="photobooth/uploadIcon-01.png" alt="no image"></button>
+    <button><img class="navImage" src="photobooth/filterIcon-01.png" alt="no image"></button>
+    <button><img class="navImage2" src="photobooth/favoritesIcon.png" alt="no image"></button>
+  </div>
+  
   <main>
+
     <div class="pictures" > <!-- contain all the photos -->
 
     </div>
 
-    <nav>
-      <div class="nav">
+    <nav id="menuBar"> <!--menu bar -->
+      <div class="nav"> <!-- upload -->
         <img class="navImage" src="photobooth/uploadIcon-01.png" alt="no image">
         <button class="firstLevel" onclick="showUpload()">upload</button>
       </div>
@@ -32,12 +40,21 @@
         <button id="uploadButton" onclick="uploadImage()">upload</button>
       </div>
 
-      <div class="nav">
+      <div class="nav"> <!--filter -->
         <img class="navImage" src="photobooth/filterIcon-01.png" alt="no image">
-        <input id="filter" type="search" placeholder="filter">
+        <button id="FilterWord" onclick="showFilter2()"> filter </button>
+        <input id="filter" type="search" placeholder="filter" onclick="showFilter()">
       </div>
 
-      <div class="nav">
+      <div id="showForFilter">
+        <input id="Secondfilter" type="search" placeholder="filter">
+        <div class="filterButtonList">
+          <button class="filterButton">enter</button>
+          <button class="filterButton">clear filter</button>
+        </div>
+      </div>
+
+      <div class="nav"> <!-- favorite -->
         <img class="navImage2" src="photobooth/favoritesIcon.png" alt="no image">
         <button class="firstLevel">favorites</button>
       </div>

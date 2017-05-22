@@ -143,7 +143,7 @@ function answer(query, response) {
       }
     }
   }
-  //if query looks like var query = "/query?op=fav&img=" + imageName + "&favorite=" + 1;
+  //if query looks like var query = "/query?op=fav&img=" + imageName + "&favorite=" + [0,1];
   if(queryObj.op == "fav"){
 	  	var isfav = queryObj.favorite;
 	  	var imageName = queryObj.img;
@@ -175,36 +175,6 @@ function answer(query, response) {
 		  	}
 	  	}
 	}
-
-	//if query = "/query?op=del&img=" + imageName + "&label=" + labelToEdit
-	// if(queryObj.op == "del"){
-	// 	var delLabel = queryObj.lebel;
-	// 	var imageName = queryObj.img;
-	// 	if(delLabel && imageName){
-	// 		db.get(
-	// 			'SELECT labels FROM Photobooth WHERE fileName = ?', [imageFile], getLabelback);
-
-	// 		function getLabelback(){
-	// 			console.log("getting labels from " + imageFile);
-	// 	        if (err) {
-	// 	          console.log("error: ", err, "\n");
-	// 	        } else {
-	// 	          // good response...so let's update labels
-	// 	          db.run(
-	// 	            'UPDATE Photobooth SET labels = ? WHERE fileName = ?', [data.labels + " " + newLabel, imageFile],
-	// 	            updateCallback);
-	// 	        }
-	// 		}
-	// 	}
-	// }
 }
-
-
-
-
-//app.listen(8066);
-//app.listen(8078);
-//app.listen(10316);
-//app.get();
 
 app.listen(portNum);
