@@ -96,44 +96,53 @@ var querystring = require('querystring'); // handy for parsing query strings
 function answer(query, response) {
   // query looks like: op=add&img=[image filename]&label=[label to add]
   queryObj = querystring.parse(query);
-  if (queryObj.op == "add") {
-    var newLabel = queryObj.label;
-    var imageFile = queryObj.img;
-    if (newLabel && imageFile) {
-      // good add query
-      // go to database!
-      db.get(
-        'SELECT labels FROM Photobooth WHERE fileName = ?', [imageFile], getCallback);
+  var label = queryObj.label;
+  var imageFile = queryObj.img;
+  if (label && imageFile) {
+    db.get('SELECT labels FROM Photobooth WHERE fileName = ?', [imageFile], getCallback);
+  }
 
-      // define callback inside queries so it knows about imageFile
-      // because closure!
-      function getCallback(err, data) {
-        console.log("getting labels from " + imageFile);
-        if (err) {
-          console.log("error: ", err, "\n");
-        } else {
-          // good response...so let's update labels
-          db.run(
-            'UPDATE Photobooth SET labels = ? WHERE fileName = ?', [data.labels + " " + newLabel, imageFile],
-            updateCallback);
-        }
+  function getCallback(err, data) {
+    console.log("getting labels from " + imageFile);
+    if (err) {
+      console.log("error: ", err, "\n");
+    } else {
+      console.log(queryObj.op);
+      if (queryObj.op == "add") {
+        db.run('UPDATE Photobooth SET labels = ? WHERE fileName = ?', 
+               [data.labels + " " + label, imageFile],
+               updateCallback);
       }
-
-      // Also define this inside queries so it knows about
-      // response object
-      function updateCallback(err) {
-        console.log("updating labels for " + imageFile + "\n");
-        if (err) {
-          console.log(err + "\n");
-          sendCode(400, response, "requested photo not found");
-        } else {
-          // send a nice response back to browser
-          response.status(200);
-          response.type("text/plain");
-          response.send("added label " + newLabel + " to " + imageFile);
-        }
+      else if (queryObj.op == 'remove') {
+        console.log(data.labels.replace(' ' + label, ''));
+        db.run('UPDATE Photobooth SET labels = ? WHERE fileName = ?', 
+               [data.labels.replace(' ' + label, ''), imageFile],
+               updateCallback);
       }
+    }
+  }
 
+
+  function updateCallback(err) {
+    if (queryObj.op == "add") {
+      console.log("updating labels for " + imageFile + "\n");
+    }
+    else if (queryObj.op == 'remove') {
+      console.log("removing labels for " + imageFile + "\n");
+    }
+    if (err) {
+      console.log(err + "\n");
+      sendCode(400, response, "requested photo not found");
+    } else {
+      // send a nice response back to browser
+      response.status(200);
+      response.type("text/plain");
+      if (queryObj.op == "add") {
+        response.send("added label " + label + " to " + imageFile);
+      }
+      else if (queryObj.op == 'remove') {
+        response.send("removed label " + label + " from " + imageFile);
+      }
     }
   }
 }
