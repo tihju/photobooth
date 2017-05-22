@@ -92,7 +92,7 @@ function setPictureBlock(imageFile, imageId, selectedFile) {
     else {
       unFade(imageId);
       var labels = imageArray[imageId].labels;
-      var labelArr = labels.split(";");
+      var labelArr = labels.split(" ");
       for (var i = 0; i < labelArr.length; i++) {
         if (labelArr[i] != "" && labelArr[i] != " ") {
           addLabels(imageId.toString(), labelArr[i]);
