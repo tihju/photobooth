@@ -195,43 +195,49 @@ function addLabels(id, text) {
 
   if (text === undefined) {
     addDiv.getElementsByClassName('removeButton')[0].style.display = 'inline';
-    addSpan.innerHTML += " " + labelInput.value;
-    updateLabelsToDB(num, labelInput.value);
-  } else {
-    addSpan.innerHTML += " " + text;
+    text = labelInput.value;
+    updateLabelsToDB(num, text);
   }
 
-
+  addSpan.innerHTML += " " + text;
 
   //delete labels
   //please update database here as well
   addImg.onclick = function() {
-    if (addDiv.style.display === "none") {
-      addDiv.style.display = "block";
-    } else {
-      addDiv.style.display = "none";
-    }
-
+    addDiv.remove();
+    removeLabelsFromDB(num, text);
   };
 
 }
 
-function updateLabelsToDB(num, labels) {
+function updateLabelsToDB(num, label) {
   var imageName = imageArray[num].imageName;
-  var query = "/query?op=add&img=" + imageName + "&label=" + labels;
+  var query = "/query?op=add&img=" + imageName + "&label=" + label;
 
   var oReq = new XMLHttpRequest();
   oReq.open("GET", query);
 
   oReq.onload = function() {
     console.log(oReq.responseText);
-
   }
+
   oReq.send();
-
-
 }
 
+function removeLabelsFromDB(num, label) {
+  console.log(label);
+  var imageName = imageArray[num].imageName;
+  var query = "/query?op=remove&img=" + imageName + "&label=" + label;
+
+  var oReq = new XMLHttpRequest();
+  oReq.open("GET", query);
+
+  oReq.onload = function() {
+    console.log(oReq.responseText);
+  }
+
+  oReq.send();
+}
 
 function makeDiv(y) {
   //create div tag
