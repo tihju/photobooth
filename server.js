@@ -136,6 +136,60 @@ function answer(query, response) {
 
     }
   }
+  //if query looks like var query = "/query?op=fav&img=" + imageName + "&favorite=" + 1;
+  if(queryObj.op == "fav"){
+	  	var isfav = queryObj.favorite;
+	  	var imageName = queryObj.img;
+	  	if(isfav && imageName){
+	  		db.get(
+	  			'SELECT favorite FROM Photobooth WHERE fileName = ?', [imageName], getFavoriteback);
+
+	  		function getFavoriteback(err, data){
+	  			console.log("getting is favorite from " + imageName);
+	  			if(err){
+	  				console.log("error: ", err, "\n");
+	  			}else{
+	  				db.run('UPDATE Photobooth SET favorite = ? WHERE fileName = ?', [isfav, imageName],
+	            updateFavoriteback);
+	  			}
+	  		}
+
+	  		function updateFavoriteback(err){
+	  			console.log("updating labels for " + imageFile + "\n");
+		        if (err) {
+		          console.log(err + "\n");
+		          sendCode(400, response, "requested photo not found");
+		        } else {
+		          // send a nice response back to browser
+		          response.status(200);
+		          response.type("text/plain");
+		          response.send("add favorite " + isfav + " to " + imageName);
+		        }
+		  	}
+	  	}
+	}
+
+	//if query = "/query?op=del&img=" + imageName + "&label=" + labelToEdit
+	// if(queryObj.op == "del"){
+	// 	var delLabel = queryObj.lebel;
+	// 	var imageName = queryObj.img;
+	// 	if(delLabel && imageName){
+	// 		db.get(
+	// 			'SELECT labels FROM Photobooth WHERE fileName = ?', [imageFile], getLabelback);
+
+	// 		function getLabelback(){
+	// 			console.log("getting labels from " + imageFile);
+	// 	        if (err) {
+	// 	          console.log("error: ", err, "\n");
+	// 	        } else {
+	// 	          // good response...so let's update labels
+	// 	          db.run(
+	// 	            'UPDATE Photobooth SET labels = ? WHERE fileName = ?', [data.labels + " " + newLabel, imageFile],
+	// 	            updateCallback);
+	// 	        }
+	// 		}
+	// 	}
+	// }
 }
 
 

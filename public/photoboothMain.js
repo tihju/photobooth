@@ -8,7 +8,7 @@ var control = {
 
 var imageArray = new Array();
 
-
+//when click the upload button
 function uploadImage() {
   var selectedFile = document.getElementById('fileSelector').files[0];
 
@@ -76,15 +76,20 @@ function setPictureBlock(imageFile, imageId, selectedFile) {
 
     var pictures = document.getElementsByClassName("pictures")[0];
     var indipicture = document.createElement('div');
-    indipicture.setAttribute('class', 'indipicture');
-
-    indipicture.innerHTML = oReq.responseText;
+    indipicture.setAttribute('class', 'indiPicture');
     pictures.appendChild(indipicture);
 
+    indipicture.innerHTML = oReq.responseText;
+
+
     changeTemplate(imageFile, imageId);
+
+    //where upload new image by the user
     if (selectedFile !== undefined) {
       uploadImageToServer(selectedFile, imageId);
-    } else {
+    }
+    //where pulling image from the server database.
+    else {
       unFade(imageId);
       var labels = imageArray[imageId].labels;
       var labelArr = labels.split(" ");
@@ -100,8 +105,9 @@ function setPictureBlock(imageFile, imageId, selectedFile) {
 
 }
 
+//this is to give every image a new id for needed
+//onclick function.
 function changeTemplate(imageFile, imageId) {
-  // change the template
 
   // change the image
   var img = document.getElementById('imageFile');
@@ -125,6 +131,7 @@ function changeTemplate(imageFile, imageId) {
 
 
 function createPictureBlock(fileName, id, labels, favorite) {
+  //get the image path of server
   var src = "/assets/" + fileName;
   setPictureBlock(src, id);
 
@@ -166,13 +173,8 @@ function showFullMenu(id) {
 
 }
 
+//make every label has a delete image
 function addLabels(id, text) {
-  //we need to put the image to every lables from the database as well.
-  //no need to do double containers!! orhterwise, we can delete labels from database.
-  //not sure about this part!
-
-  // var ImgURL = "http://138.68.25.50:10316/photobooth/removeTagButton.png";
-
   var num = id.replace("addBtn", "");
 
 
@@ -186,13 +188,17 @@ function addLabels(id, text) {
 
   var addSpan = makeSpan(addDiv);
 
+  var labelToEdit = "";
+
   //in here, user add a labels, please update databasehere as well
   //may need to check if the x[i].value is empty!
 
   if (text === undefined) {
+    labelToEdit = labelInput.value;
     addSpan.innerHTML += " " + labelInput.value;
     updateLabelsToDB(num, labelInput.value);
   } else {
+    labelToEdit = text;
     addSpan.innerHTML += " " + text;
   }
 
@@ -201,11 +207,23 @@ function addLabels(id, text) {
   //delete labels
   //please update database here as well
   addImg.onclick = function() {
-    if (addDiv.style.display === "none") {
-      addDiv.style.display = "block";
-    } else {
+    // if (addDiv.style.display === "none") {
+    //   addDiv.style.display = "block";
+    // } else {
       addDiv.style.display = "none";
-    }
+    // }
+
+    // var imageName = imageArray[num].imageName;
+    // var query = "/query?op=del&img=" + imageName + "&label=" + labelToEdit;
+    //
+    // var oReq = new XMLHttpRequest();
+    // oReq.open("GET", query);
+    //
+    // oReq.onload = function() {
+    //   console.log(oReq.responseText);
+    //
+    // }
+    // oReq.send();
 
   };
 
@@ -261,7 +279,7 @@ function changeTag() {
 
 }
 
-
+//fetch pictures from server when open main page.
 function fetchPictures() {
   var url = "/fetchPictures";
   var oReq = new XMLHttpRequest();
@@ -273,6 +291,7 @@ function fetchPictures() {
 
     var jsonArr = JSON.parse(oReq.responseText);
 
+    //putting every picture's info into imageArray.
     for (var i = 0; i < jsonArr.length; i++) {
       imageArray.push({
         id: i,
@@ -282,6 +301,7 @@ function fetchPictures() {
         favorite: jsonArr[i].favorite
       });
 
+      //putting image into the html page.
       createPictureBlock(jsonArr[i].fileName, i, jsonArr[i].labels, jsonArr[i].favorite);
 
     }
@@ -294,9 +314,19 @@ function fetchPictures() {
 
 
 //update database of favorite
-// function addToFavorites(imgName){
-//   var url = "http://138.68.25.50:10316/query?img=" + imgNmae;
-//   console.log("not implemented");
-//   send a request
-//   var oReq = new XMLHttpRequest();
-// }
+function addToFavorites(id){
+  var num = id.replace("changeFavBtn", "");
+  //know which image to update
+  var imageName = imageArray[num].imageName;
+
+  var query = "/query?op=fav&img=" + imageName + "&favorite=" + 1;
+
+  var oReq = new XMLHttpRequest();
+  oReq.open("GET", query);
+
+  oReq.onload = function() {
+    console.log(oReq.responseText);
+
+  }
+  oReq.send();
+}
