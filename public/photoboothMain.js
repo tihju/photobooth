@@ -191,23 +191,26 @@ function changeTag(){
   //get the labels of the pictures
   var pLabel = document.getElementById('p');
   pLabel.style.backgroundColor = "#CAB9B2";
-  var s = pLabel.innerHTML;
+  var s = pLabel.textContent;
+
+  console.log("p content is: " + s);
 
   //list of labels
   var res = s.split(" ");
 
+  console.log(res);
+
   //each label add a delete image;
-  if(!res){
     for(i = 0; i < res.length; i++){
+      if(res[i] != ""){
+        var addDiv = makeDiv(pLabel);
 
-      var addDiv = makeDiv(pLabel);
+        var addImg = makeImg(addDiv);
 
-      var addImg = makeImg(addDiv);
-
-      var addSpan = makeSpan(addDiv);
-      addSpan.innerHTML = res[i];
+        var addSpan = makeSpan(addDiv);
+        addSpan.innerHTML = res[i];
+      }
     }
-  }
 
 
 }
