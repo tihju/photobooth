@@ -3,9 +3,9 @@
     <div class="showForOption" id="fullMenu">
       <form name="Optionform" action="" method="get">
         <div class="optionform">
-          <input type="button" class="options" value="change tags" id = "changeTagBtn" onclick="changeTag()">
+          <input type="button" class="options" value="change tags" id = "changeTagBtn" onclick="changeTag(this.id, this.form)">
           <hr class="optionLine">
-          <input type="button" class="options" value="add to favorites" id = "changeFavBtn">
+          <input type="button" class="options" value="add to favorites" id = "changeFavBtn" onclick="addToFavorites(this.id, this.form)">
           <!--onclick="addToFavorites()"-->
           <hr class="optionLine">
           <input type="button" class="optionButton2" />
@@ -21,7 +21,11 @@
 
   <!--for changing labels-->
   <div class="labels">
-    <p class="labelList" id="labels">
+    <div id="labelFromDataBase">
+      <p></p>
+    </div>
+    <div id="showForChange">
+      <p class="labelList" id="labels">
       <!-- for holding labels form database-->
       <!--in js we add
            <div>

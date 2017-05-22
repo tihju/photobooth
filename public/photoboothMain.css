@@ -134,7 +134,7 @@ div.indiPicture{
   flex-direction: column;
   /*justify-content: center;*/
   align-items: flex-start;
-  margin: 10px;
+  margin: 20px;
   flex-shrink: 0;
 }
 
