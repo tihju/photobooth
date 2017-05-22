@@ -1,4 +1,4 @@
-portNum = 10316;
+portNum = 8078;
 /* use the express framwork */
 var express = require("express");
 
@@ -108,12 +108,12 @@ function answer(query, response) {
       console.log("error: ", err, "\n");
     } else {
       if (queryObj.op == "add") {
-        db.run('UPDATE Photobooth SET labels = ? WHERE fileName = ?',
+        db.run('UPDATE Photobooth SET labels = ? WHERE fileName = ?', 
                [data.labels + ";" + label, imageFile],
                updateCallback);
       }
       else if (queryObj.op == 'remove') {
-        db.run('UPDATE Photobooth SET labels = ? WHERE fileName = ?',
+        db.run('UPDATE Photobooth SET labels = ? WHERE fileName = ?', 
                [data.labels.replace(';' + label, ''), imageFile],
                updateCallback);
       }
@@ -176,6 +176,5 @@ function answer(query, response) {
 	  	}
 	}
 }
-
 
 app.listen(portNum);

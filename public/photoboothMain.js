@@ -23,8 +23,6 @@ function uploadImage() {
   });
 
   readFileAndFading(selectedFile, imageId);
-
-
 }
 
 function uploadImageToServer(selectedFile, imageId) {
@@ -135,14 +133,23 @@ function createPictureBlock(fileName, id, labels, favorite) {
   //get the image path of server
   var src = "/assets/" + fileName;
   setPictureBlock(src, id);
-
-
 }
-
 
 
 function showUpload() {
   var x = document.getElementById('showForUpload');
+
+  if (control.clicked === 0) {
+    x.style.display = 'block';
+    control.clicked = 1;
+  } else {
+    x.style.display = 'none';
+    control.clicked = 0;
+  }
+}
+
+function showUpload2() {
+  var x = document.getElementById('MobileUpload');
 
   if (control.clicked === 0) {
     x.style.display = 'block';
@@ -357,6 +364,7 @@ function fetchPictures() {
 //show the upload file name
 function chooseFile(e) {
   document.getElementById('fileName').innerHTML = e.files[0].name;
+  document.getElementById('fileName2').innerHTML = e.files[0].name;
 }
 
 

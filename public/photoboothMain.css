@@ -269,6 +269,13 @@ img.removeButton{
 #fileName {
   padding-top:15px;
   padding-left:15px;
+  overflow: hidden;
+}
+
+#fileName2 {
+  padding-top:15px;
+  padding-left:15px;
+  overflow: hidden;
 }
 
 #filter{
@@ -326,6 +333,32 @@ img.removeButton{
   margin-left: 20px;
 }
 
+#MobileUpload{
+  display: none;
+  background-color: #CAB9B2; 
+}
+
+.MobileUploadList{
+  display: flex;
+  flex-direction: column;
+  max-width: 150px;
+}
+
+#MobileuploadButton{
+  width: 70px;
+  height: 30px;
+  background-color: #7B503F;
+  color: white;
+  border:1px solid black;
+  font-size: 15px;
+  margin: 15px;
+}
+
+.MobileBut{
+  background-color: Transparent;
+  border: none;
+}
+
 @media (max-width: 480px){
   
   #menuBar,#divide{
@@ -348,7 +381,7 @@ img.removeButton{
   }
 
   .navImage2{
-    margin-top: 4px;
+    margin-top: 2px;
     margin-left: 2px; 
   }
 
