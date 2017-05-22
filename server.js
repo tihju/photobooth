@@ -107,16 +107,14 @@ function answer(query, response) {
     if (err) {
       console.log("error: ", err, "\n");
     } else {
-      console.log(queryObj.op);
       if (queryObj.op == "add") {
         db.run('UPDATE Photobooth SET labels = ? WHERE fileName = ?', 
-               [data.labels + " " + label, imageFile],
+               [data.labels + ";" + label, imageFile],
                updateCallback);
       }
       else if (queryObj.op == 'remove') {
-        console.log(data.labels.replace(' ' + label, ''));
         db.run('UPDATE Photobooth SET labels = ? WHERE fileName = ?', 
-               [data.labels.replace(' ' + label, ''), imageFile],
+               [data.labels.replace(';' + label, ''), imageFile],
                updateCallback);
       }
     }
