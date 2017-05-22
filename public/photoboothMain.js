@@ -1,4 +1,4 @@
-portNum = 8078;
+portNum = 10317;
 
 
 var control = {
@@ -251,7 +251,7 @@ function makeDiv(y) {
 }
 
 function makeImg(addDiv) {
-  // var ImgURL = "http://138.68.25.50:10316/photobooth/removeTagButton.png";
+  // var ImgURL = "http://138.68.25.50:" + portNum +"public/photobooth/removeTagButton.png";
   var ImgURL = "photobooth/removeTagButton.png";
   var addImg = document.createElement("img");
   addImg.src = ImgURL;
@@ -310,7 +310,7 @@ function showFilter(){
     filterWord.style.display = 'block';
     filter.style.display = 'none';
     clicked = 1;
-  } 
+  }
 }
 
 function showFilter2(){
@@ -324,7 +324,7 @@ function showFilter2(){
     filterWord.style.display = 'none';
     filter.style.display = 'block';
     clicked = 1;
-  } 
+  }
 }
 
 
