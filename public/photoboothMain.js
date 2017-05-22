@@ -162,7 +162,7 @@ function makeDiv(y){
 
 function makeImg(addDiv){
   // var ImgURL = "http://138.68.25.50:10316/photobooth/removeTagButton.png";
-   var ImgURL = "photobooth/removeTagButton.png";
+  var ImgURL = "photobooth/removeTagButton.png";
   var addImg = document.createElement("img");
   addImg.src = ImgURL;
   addImg.className = "removeButton";
@@ -183,26 +183,34 @@ function makeSpan(addDiv){
 //i here is which picture's labels need to edit.
 function changeTag(){
   var showAddInput = document.getElementById('showForChange');
-  showAddInput.style.display = "block";
 
-  //get the labels of the pictures
-  // var pLabel = document.getElementById('p');
-  // var s = pLabel.innerHTML;
-  //
-  // //list of labels
-  // var res = s.split(" ");
+  if (showAddInput.style.display == "block") {
+    showAddInput.style.display = "";
 
-  //each label add a delete image;
-  // for(i = 0; i < res.length(); i++){
-  //
-  //   var addDiv = makeDiv(pLabel);
-  //
-  //   var addImg = makeImg(addDiv);
-  //
-  //   var addSpan = makeSpan(addDiv);
-  // }
+  }
+  else {
+    showAddInput.style.display = "block";
 
+    //get the labels of the pictures
+    var pLabel = document.getElementById('p');
+    pLabel.style.backgroundColor = "#CAB9B2";
+    var s = pLabel.innerHTML;
 
+    //list of labels
+    var res = s.split(" ");
+
+    //each label add a delete image;
+    if(!res){
+      for(i = 0; i < res.length; i++){
+    
+      var addDiv = makeDiv(pLabel);
+      var addImg = makeImg(addDiv);
+    
+      var addSpan = makeSpan(addDiv);
+      addSpan.innerHTML = res[i];
+      }
+    }
+  }
 }
 
 //update database of favorite
