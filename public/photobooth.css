@@ -1,48 +1,56 @@
-/* photobooth.css */
+/*css for photobooth.html*/
 
+/*the font is not working!*/
 @font-face {
 	font-family:"GoudyStd","GoudyStd-Italic","GoudyStd-BoldItalic","GoudyStd-Bold";
 	src:
-		url(photobooth/fontGoudy/GoudyStd.otf) format("opentype"),
-		url(photobooth/fontGoudy/GoudyStd-Italic.otf) format("opentype"),
-		url(photobooth/fontGoudy/GoudyStd-BoldItalic.otf) format("opentype"),
-		url(photobooth/fontGoudy/GoudyStd-Bold.otf) format("opentype");
+		url(photobooth/fontGoudy/GoudyStd.otf),
+		url(photobooth/fontGoudy/GoudyStd-Italic.otf)，
+		url(photobooth/fontGoudy/GoudyStd-BoldItalic.otf)，
+		url(photobooth/fontGoudy/GoudyStd-Bold.otf)；
+  font-stretch: expanded;
+  font-style: normal;
 }
 
 body{
-	font-family:"GoudyStd","GoudyStd-Italic","GoudyStd-BoldItalic","GoudyStd-Bold";
-	color: #795040;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  min-height: 100vh;
+  align-items: center;
+  justify-content: center;
+  color: #7B503F;
+  font-family: "GoudyStd","GoudyStd-Italic","GoudyStd-BoldItalic","GoudyStd-Bold";
+
 }
 
-.MainPage{
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	margin:auto;
-	padding-top: 250px;
-	width: 200px;
-	height: 50px;
+main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-#Welcome{
-	font-size: 30pt;
-	padding: 10px;
+div#welcome{
+  text-align: center;
+  font-size: 40pt;
+  font-weight: bold;
 }
 
-#Enter{
-	padding-bottom: 10px;
+button{
+  width: 150px;
+  height: 50px;
+  /*align-items: baseline;*/
+  align-self: center;
+  background-color: #7B503F;
+  color: white;
+  margin: 30px;
+  margin-bottom: 40px;
+  font-size: 25px;
 }
 
-#Enter_button {
-	width: 80px;
-	height: 30px;
-	font-size: 15pt;
-	color: white;
-	background: #795040;
-    border: black;
-}
-
-#Info{
-	text-align: center;
-	margin: 10px;
+p{
+  margin: 0;
+  margin-top: 5px;
+  font-weight: 550;
+  font-size: 15pt;
 }

@@ -1,27 +1,22 @@
-<!-- photobooth.html -->
-
 <!doctype HTML>
 <html>
+
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width"> 
-	<title>Photobooth</title>
-	<link rel="stylesheet" type="text/css" href="photobooth.css"></link>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Photebooth</title>
+  <link rel="stylesheet" type="text/css" href="photobooth.css">
 </head>
 
 <body>
-<div class="MainPage">
-	<div id="Welcome"> Welcome to Photobooth. </div> 
-	<div id="Enter"><form action ="./photobooth_main.html">
-		<input id="Enter_button" type="submit" value="enter">
-	</form></div>
-	<div id="Info">
-		<div>Designed by Dani Macedo,</div>
-		<div>Powered by the Google</div>
-		<div>Cloud Vision API</div>
-	</div>
-</div>
-
-<script src="photobooth.js"></script>
+  <main>
+    <div id="welcome">Welcome to <br> Photobooth.</div>
+    <button onclick="getMainPage()">enter</button>
+    <p>Designed by Dani Macedo,</p>
+    <p>Powered by the Google</p>
+    <p>Cloud Vision API</p>
+  </main>
+  <script src="photobooth.js"></script>
 </body>
+
 </html>
