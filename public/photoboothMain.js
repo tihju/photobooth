@@ -73,7 +73,11 @@ function setPictureBlock(imageFile, imageId, selectedFile) {
     var pictures = document.getElementsByClassName("pictures")[0];
     var indipicture = document.createElement('div');
     indipicture.setAttribute('class', 'indiPicture');
-    pictures.appendChild(indipicture);
+    if (pictures.firstChild){
+      pictures.insertBefore(indipicture,pictures.firstChild);
+    }else{
+      pictures.appendChild(indipicture);
+    }
 
     indipicture.innerHTML = oReq.responseText;
 
