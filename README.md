@@ -23,6 +23,6 @@
    * photoboothMain.html
    * photoboothMain.js
 
-    1. All the html files, css files and js files
-    2. Empty assets folder to hold the upload images
-    3. The given photobooth folder
+    - All the html files, css files and js files
+    - Empty assets folder to hold the upload images
+    - The given photobooth folder
