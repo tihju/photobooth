@@ -335,7 +335,7 @@ img.removeButton{
 
 #MobileUpload{
   display: none;
-  background-color: #CAB9B2; 
+  background-color: #CAB9B2;
 }
 
 .MobileUploadList{
@@ -381,13 +381,8 @@ img.removeButton{
   }
 
   .navImage2{
-<<<<<<< HEAD
-    margin-top: 4px;
-    margin-left: 2px;
-=======
     margin-top: 2px;
     margin-left: 2px; 
->>>>>>> ed76455c38896c8e4ff8e32e84daaf8d7021ba3e
   }
 
 }
