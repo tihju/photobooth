@@ -12,7 +12,7 @@
   * README.md
   * server.js
   
-- In the public folder, we have:
+- In the public folder, we have all the html files, css files and js files, Empty assets folder to hold the upload images and the given photobooth folder:
    * assets
    * indipicture.html
    * photobooth
@@ -22,7 +22,3 @@
    * photoboothMain.css
    * photoboothMain.html
    * photoboothMain.js
-
- --> All the html files, css files and js files
- --> Empty assets folder to hold the upload images
- --> The given photobooth folder
