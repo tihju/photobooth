@@ -6,16 +6,16 @@
 - Tingting Zhu
 
 ### Directory:
-- HW5
 -- Public
---- assets
---- indipicture.html
---- photobooth
---- photobooth.css
---- photobooth.html
---- photobooth.js
---- photoboothMain.css
---- photoboothMain.html
---- photoboothMain.js
-- Readme.md
-- server.js
+| |--- assets
+| |--- indipicture.html
+| |--- photobooth
+| |--- photobooth.css
+| |--- photobooth.html
+| |--- photobooth.js
+| |--- photoboothMain.css
+| |--- photoboothMain.html
+| |--- photoboothMain.js
+-- Readme.md
+|
+-- server.js
