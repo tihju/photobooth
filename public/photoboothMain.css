@@ -1,6 +1,16 @@
 /*css for photoboothMain.html*/
+@font-face {
+  font-family:"GoudyStd","GoudyStd-Italic","GoudyStd-BoldItalic","GoudyStd-Bold";
+  src:url("photobooth/fontGoudy/GoudyStd.otf"),
+    url("photobooth/fontGoudy/GoudyStd-Italic.otf")，
+    url("photobooth/fontGoudy/GoudyStd-BoldItalic.otf")，
+    url("photobooth/fontGoudy/GoudyStd-Bold.otf")；
+  font-stretch: expanded;
+  font-style: normal;
+}
 
 body{
+  font-family:"GoudyStd","GoudyStd-Italic","GoudyStd-BoldItalic","GoudyStd-Bold";
   display: flex;
   flex-direction: column;
   flex-grow: 1;
@@ -382,7 +392,8 @@ img.removeButton{
 
   .navImage2{
     margin-top: 2px;
-    margin-left: 2px; 
+    margin-left: 2px;
   }
+
 
 }
