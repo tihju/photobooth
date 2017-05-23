@@ -287,7 +287,7 @@ function changeTag(id) {
   //images with lables
   var removeButtons = labelBlock.getElementsByClassName('removeButton');
 
-  if (removeButtons[0].style.display != 'inline') {
+  if (!removeButtons[0] || removeButtons[0].style.display != 'inline') {
     labelBlock.style.backgroundColor = '#CAB9B2';
 
     if (removeButtons.length < 10) {
