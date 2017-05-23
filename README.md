@@ -1,6 +1,6 @@
-# ECS189H - Assignment 1 photobooth part one
+# ECS189H - Assignment 1 Photobooth Part One
 
-## Group Members:
+### Group Members:
 - Man Yu Mandy Wong
 - Chi Kei Loi
 - Tingting Zhu
