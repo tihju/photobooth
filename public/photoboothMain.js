@@ -73,7 +73,11 @@ function setPictureBlock(imageFile, imageId, selectedFile) {
     var pictures = document.getElementsByClassName("pictures")[0];
     var indipicture = document.createElement('div');
     indipicture.setAttribute('class', 'indiPicture');
-    pictures.appendChild(indipicture);
+    if (pictures.firstChild){
+      pictures.insertBefore(indipicture,pictures.firstChild);
+    }else{
+      pictures.appendChild(indipicture);
+    }
 
     indipicture.innerHTML = oReq.responseText;
 
@@ -89,6 +93,7 @@ function setPictureBlock(imageFile, imageId, selectedFile) {
       unFade(imageId);
       var labels = imageArray[imageId].labels;
       var labelArr = labels.split(";");
+
       for (var i = 0; i < labelArr.length; i++) {
         if (labelArr[i] != "" && labelArr[i] != " ") {
           addLabels(imageId.toString(), labelArr[i]);
@@ -206,10 +211,14 @@ function addLabels(id, text) {
 
   addSpan.innerHTML += " " + text;
 
+  changeTag(num);
+  changeTag(num);
   //delete labels
   //please update database here as well
   addImg.onclick = function() {
     addDiv.remove();
+    changeTag(num);
+    changeTag(num);
     removeLabelsFromDB(num, text);
   };
 
@@ -275,13 +284,16 @@ function changeTag(id) {
   //the div that contains input and button.
   var showingBlock = document.getElementById('showForChange' + id);
 
-  if (showingBlock.style.display != 'block') {
-    labelBlock.style.backgroundColor = '#CAB9B2';
-    labelBlock.style.borderBottom = '0px solid black';
-    showingBlock.style.display = 'block';
+  //images with lables
+  var removeButtons = labelBlock.getElementsByClassName('removeButton');
 
-    //images with lables
-    var removeButtons = labelBlock.getElementsByClassName('removeButton');
+  if (removeButtons[0].style.display != 'inline') {
+    labelBlock.style.backgroundColor = '#CAB9B2';
+
+    if (removeButtons.length < 10) {
+      labelBlock.style.borderBottom = '0px solid black';
+      showingBlock.style.display = 'block';
+    }
 
     for (var i = 0; i < removeButtons.length; i++) {
       removeButtons[i].style.display = 'inline';
