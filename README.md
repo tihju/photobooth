@@ -11,8 +11,8 @@
   * public
   * README.md
   * server.js
-___
- - In the public folder, we have:
+  
+- In the public folder, we have:
    * assets
    * indipicture.html
    * photobooth
