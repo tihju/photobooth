@@ -187,17 +187,12 @@ function showFullMenu(id) {
 function addLabels(id, text) {
   var num = id.replace("addBtn", "");
 
-
   var labelInput = document.getElementById('labelInput' + num);
   //this is for the p tag
   var labels = document.getElementById('labels' + num);
-
   var addDiv = makeDiv(labels);
-
   var addImg = makeImg(addDiv);
-
   var addSpan = makeSpan(addDiv);
-
   var labelToEdit = "";
 
   //in here, user add a labels, please update databasehere as well
@@ -339,6 +334,19 @@ function showFilter2(){
     filter.style.display = 'block';
     clicked = 1;
   } 
+}
+
+function showFilter3(){
+  var mobilefilter = document.getElementById('MobileFilter');
+  console.log(control.clicked);
+
+  if (control.clicked === 0) {
+    mobilefilter.style.display = 'block';
+    control.clicked = 1;
+  } else {
+    mobilefilter.style.display = 'none';
+    control.clicked = 0;
+  }
 }
 
 //fetch pictures from server when open main page.

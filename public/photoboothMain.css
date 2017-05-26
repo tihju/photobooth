@@ -369,6 +369,18 @@ img.removeButton{
   border: none;
 }
 
+#MobileFilter{
+  display: none;
+  background-color: #CAB9B2; 
+  padding: 15px;
+}
+
+.MobileFilterList{
+  display: flex;
+  flex-direction: column;
+  max-width: 150px;
+}
+
 @media (max-width: 480px){
   
   #menuBar,#divide{

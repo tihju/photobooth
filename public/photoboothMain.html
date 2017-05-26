@@ -15,7 +15,8 @@
   <hr id="divide">
 
   <div id="MenuForMobile"> <!--menu for Mobile Version -->
-    
+      
+      <!-- Mobile Upload -->
       <div class="MobileUploadList">
         <button class="MobileBut" onclick="showUpload2()"><img class="navImage" src="photobooth/uploadIcon-01.png" alt="no image"></button>
 
@@ -29,7 +30,20 @@
         </div>
       </div>
 
-    <button class="MobileBut"><img class="navImage" src="photobooth/filterIcon-01.png" alt="no image"></button>
+    <!-- Filter Upload -->
+    <div class="MobileFilterList">
+      <button class="MobileBut" onclick="showFilter3()"><img class="navImage" src="photobooth/filterIcon-01.png" alt="no image"></button>
+
+      <div id="MobileFilter">
+        <input id="Thirdfilter" type="search" placeholder="filter">
+        <div class="filterButtonList">
+          <button class="filterButton">enter</button>
+          <button class="filterButton">clear filter</button>
+        </div>
+      </div>
+
+    </div>
+
     <button class="MobileBut"><img class="navImage2" src="photobooth/favoritesIcon.png" alt="no image"></button>
   </div>
   
