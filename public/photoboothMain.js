@@ -2,7 +2,8 @@ portNum = 10316;
 
 
 var control = {
-  clicked: 0
+  clicked: 0,
+  isFavorite:1
 };
 
 
@@ -262,7 +263,6 @@ function makeDiv(y) {
 }
 
 function makeImg(addDiv) {
-  // var ImgURL = "http://138.68.25.50:10316/photobooth/removeTagButton.png";
   var ImgURL = "photobooth/removeTagButton.png";
   var addImg = document.createElement("img");
   addImg.src = ImgURL;
@@ -342,7 +342,7 @@ function showFilter2(){
     filter.style.display = 'block';
     clicked = 1;
 
-  } 
+  }
 }
 
 //fetch pictures from server when open main page.
@@ -390,6 +390,19 @@ function addToFavorites(id){
   //know which image to update
   var imageName = imageArray[num].imageName;
   var passVal = 0;
+
+  //find the button, so that we can change the value of it
+  var changeValue = document.getElementById(id);
+  //changing the button text.
+  console.log(changeValue);
+  console.log(changeValue.value);
+  if(control.isFavorite === 1){
+    changeValue.value = "unfavorite";
+    control.isFavorite = 0;
+  }else{
+    changeValue.value = "addToFavorites";
+    control.isFavorite = 1;
+  }
 
   if(imageArray[num].favorite === 0){
       passVal = 1;
