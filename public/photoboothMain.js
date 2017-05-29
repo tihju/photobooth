@@ -1,4 +1,4 @@
-portNum = 10316;
+portNum = 8078;
 
 var control = {
   clicked: 0,
@@ -462,4 +462,12 @@ function favoriteFilter(){
 function getLabelsFromApi(imageName){
   // var query = "/query?op=fav&img=" + imageName + "&favorite=" + passVal;
   var quary = "/query?op=apiLabel&img=" + imageName;
+}
+
+function clearFilter() {
+  document.getElementById('Secondfilter').value='';
+}
+
+function clearFilter2() {
+  document.getElementById('Thirdfilter').value='';
 }
