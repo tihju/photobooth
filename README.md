@@ -1,4 +1,4 @@
-# ECS189H - Assignment 1 Photobooth Part Two
+# ECS189H - Assignment 6 Photobooth Part Two
 
 ### Group Members:
 - Man Yu Mandy Wong
