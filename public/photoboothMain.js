@@ -1,9 +1,10 @@
 portNum = 10316;
 
-
+// var annoteteImg = require('annotateImage');
 var control = {
   clicked: 0,
-  isFavorite:1
+  isFavorite: 1,
+  showFavorite: 0
 };
 
 
@@ -88,8 +89,9 @@ function setPictureBlock(imageFile, imageId, selectedFile) {
     //where upload new image by the user
     if (selectedFile !== undefined) {
       uploadImageToServer(selectedFile, imageId);
+      //request google api labels here?
     }
-    //where pulling image from the server database.
+    //where pulling image's labels from the server database.
     else {
       unFade(imageId);
       var labels = imageArray[imageId].labels;
@@ -346,6 +348,7 @@ function showFilter2(){
 }
 
 //fetch pictures from server when open main page.
+//called when load the main webpage
 function fetchPictures() {
   var url = "/fetchPictures";
   var oReq = new XMLHttpRequest();
@@ -421,4 +424,33 @@ function addToFavorites(id){
 
   }
   oReq.send();
+}
+
+//only show picture with favorite is 1;
+function favoriteFilter(){
+  console.log("in favoriteFilter");
+  var buttonVal = document.getElementsByClassName('firstLevel');
+  var allImgs = document.getElementsByClassName('indiPicture');
+  console.log(allImgs);
+  var imageNum = imageArray.length;
+  if(control.showFavorite === 0){
+    for(i = 0; i < imageNum; i++){
+      if(imageArray[i].favorite === 0){
+        //block this images
+        allImgs[imageNum -1 - imageArray[i].id].style.display = "none";
+      }
+    }
+    control.showFavorite = 1;
+    buttonVal[1].textContent = "All";
+  }else{//not sure if this is neeeded
+    for(i = 0; i < imageNum; i++){
+      if(imageArray[i].favorite === 0){
+        //block this images
+        allImgs[imageNum -1 - imageArray[i].id].style.display = "block";
+      }
+    }
+    control.showFavorite = 0;
+    buttonVal[1].textContent = "favorite";
+  }
+
 }

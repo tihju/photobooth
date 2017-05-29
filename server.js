@@ -95,6 +95,7 @@ var querystring = require('querystring'); // handy for parsing query strings
 
 function answer(query, response) {
   // query looks like: op=add&img=[image filename]&label=[label to add]
+  //query looks like: op=remove&img=[image filename]&label=[label to delete]
   queryObj = querystring.parse(query);
   var label = queryObj.label;
   var imageFile = queryObj.img;
