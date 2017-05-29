@@ -236,7 +236,14 @@ function updateLabelsToDB(num, label) {
   oReq.open("GET", query);
 
   oReq.onload = function() {
-    console.log(oReq.responseText);
+    if (oReq.status == 500) {
+      let imageBlock = document.getElementById('labels'+num);
+      let tagBlocks = imageBlock.getElementsByClassName('deleteLabel');
+      let index = tagBlocks.length - 1;
+      tagBlocks[index].remove();
+      alert("Label Existed");
+    }
+    console.log(oReq.status);
   }
 
   oReq.send();

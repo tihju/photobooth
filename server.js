@@ -109,11 +109,19 @@ function answer(query, response) {
     console.log("getting labels from " + imageFile);
     if (err) {
       console.log("error: ", err, "\n");
-    } else {
+    } 
+    else {
       if (queryObj.op == "add") {
-        db.run('UPDATE Photobooth SET labels = ? WHERE fileName = ?',
+        console.log(data.labels.indexOf(label));
+        if (data.labels.indexOf(label) != -1) {
+          response.status(500);
+          response.send("Label exists");
+        }
+        else {
+          db.run('UPDATE Photobooth SET labels = ? WHERE fileName = ?',
                [data.labels + ";" + label, imageFile],
                updateCallback);
+        }
       }
       else if (queryObj.op == 'remove') {
         db.run('UPDATE Photobooth SET labels = ? WHERE fileName = ?',
