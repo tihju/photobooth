@@ -1,4 +1,4 @@
-portNum = 10316;
+portNum = 8078;
 /* use the express framwork */
 var express = require("express");
 
@@ -46,9 +46,27 @@ app.post('/', function(request, response) {
 
   // callback for when file is fully recieved
   form.on('end', function() {
-    insertToDB(fileName);
-    response.status(201);
-    response.send("recieved file"); // respond to browser
+    var db = new sqlite3.Database(dbFile);
+    //1 for favorite and 0 for not favorite.
+    var sqlQuery = [fileName, " ", "0"];
+    console.log(sqlQuery);
+    db.serialize(function() {
+      db.run("INSERT INTO Photobooth VALUES  (? ,?, ?) ", sqlQuery, insertCallBack);
+    });
+
+    function insertCallBack(err) {
+      if (err) {
+        response.status(500);
+        response.send(err); // respond to browser
+      }
+      else {
+        response.status(201);
+        response.send("recieved file"); // respond to browser
+      }
+    }
+
+    db.close();
+
   });
 
 });
@@ -68,27 +86,11 @@ app.get('/fetchPictures', function(req, res) {
   }
 });
 
-
-
-function insertToDB(fileName) {
-  var db = new sqlite3.Database(dbFile);
-  //1 for favorite and 0 for not favorite.
-  var sqlQuery = [fileName, " ", "0"];
-  console.log(sqlQuery);
-  db.serialize(function() {
-    db.run("INSERT INTO Photobooth VALUES  (? ,?, ?) ", sqlQuery, errorCallback);
-  })
-  db.close();
-
-}
-
 function errorCallback(err) {
-
   if (err) {
     console.log("error :", err, "\n");
   }
 }
-
 // SERVER CODE
 // Handle request to add a label
 var querystring = require('querystring'); // handy for parsing query strings

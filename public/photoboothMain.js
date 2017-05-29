@@ -38,9 +38,14 @@ function uploadImageToServer(selectedFile, imageId) {
 
   oReq.open("POST", url);
   oReq.onload = function() {
-    console.log(oReq.responseText);
-    unFade(imageId);
-
+    if(oReq.status == 500) {
+      let pictureBlock = document.getElementsByClassName("indiPicture");
+      pictureBlock[0].remove();
+      alert("Upload Error");
+    }
+    else {
+      unFade(imageId);
+    }
   }
   oReq.send(formData);
 }
