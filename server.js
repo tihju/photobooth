@@ -1,4 +1,4 @@
-portNum = 8078;
+portNum = 10316;
 /* use the express framwork */
 var express = require("express");
 
@@ -95,6 +95,7 @@ var querystring = require('querystring'); // handy for parsing query strings
 
 function answer(query, response) {
   // query looks like: op=add&img=[image filename]&label=[label to add]
+  //query looks like: op=remove&img=[image filename]&label=[label to delete]
   queryObj = querystring.parse(query);
   var label = queryObj.label;
   var imageFile = queryObj.img;
@@ -108,12 +109,12 @@ function answer(query, response) {
       console.log("error: ", err, "\n");
     } else {
       if (queryObj.op == "add") {
-        db.run('UPDATE Photobooth SET labels = ? WHERE fileName = ?', 
+        db.run('UPDATE Photobooth SET labels = ? WHERE fileName = ?',
                [data.labels + ";" + label, imageFile],
                updateCallback);
       }
       else if (queryObj.op == 'remove') {
-        db.run('UPDATE Photobooth SET labels = ? WHERE fileName = ?', 
+        db.run('UPDATE Photobooth SET labels = ? WHERE fileName = ?',
                [data.labels.replace(';' + label, ''), imageFile],
                updateCallback);
       }

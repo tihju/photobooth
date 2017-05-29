@@ -24,6 +24,7 @@
           <br>
           <label for="fileSelector">choose file...</label>
           <br>
+
           <div id="fileName2" class="fileName">no file chosen</div>
           <input type="file" id="fileSelector" onchange="chooseFile(this)">
           <button id="MobileuploadButton" onclick="uploadImage()">upload</button>
@@ -44,9 +45,9 @@
 
     </div>
 
-    <button class="MobileBut"><img class="navImage2" src="photobooth/favoritesIcon.png" alt="no image"></button>
+    <button class="MobileBut" onclick="favoriteFilter()"><img class="navImage2" src="photobooth/favoritesIcon.png" alt="no image"></button>
   </div>
-  
+
   <main>
 
     <div class="pictures" > <!-- contain all the photos -->
@@ -62,6 +63,7 @@
       <div id="showForUpload">
           <label for="fileSelector">choose file...</label>
           <br>
+
           <div id="fileName" class="fileName">no file chosen</div>
           <input type="file" id="fileSelector" onchange="chooseFile(this)">
         <button id="uploadButton" onclick="uploadImage()">upload</button>
@@ -83,7 +85,7 @@
 
       <div class="nav"> <!-- favorite -->
         <img class="navImage2" src="photobooth/favoritesIcon.png" alt="no image">
-        <button class="firstLevel">favorites</button>
+        <button class="firstLevel" onclick="favoriteFilter()">favorites</button>
       </div>
     </nav>
   </main>

@@ -1,8 +1,9 @@
-portNum = 8078;
-
+portNum = 10316;
 
 var control = {
-  clicked: 0
+  clicked: 0,
+  isFavorite: 1,
+  showFavorite: 0
 };
 
 
@@ -87,8 +88,10 @@ function setPictureBlock(imageFile, imageId, selectedFile) {
     //where upload new image by the user
     if (selectedFile !== undefined) {
       uploadImageToServer(selectedFile, imageId);
+      //request google api labels here? not sure.
+      getLabelsFromApi(selectedFile);
     }
-    //where pulling image from the server database.
+    //where pulling image's labels from the server database.
     else {
       unFade(imageId);
       var labels = imageArray[imageId].labels;
@@ -258,7 +261,6 @@ function makeDiv(y) {
 }
 
 function makeImg(addDiv) {
-  // var ImgURL = "http://138.68.25.50:10316/photobooth/removeTagButton.png";
   var ImgURL = "photobooth/removeTagButton.png";
   var addImg = document.createElement("img");
   addImg.src = ImgURL;
@@ -286,10 +288,12 @@ function changeTag(id) {
   if (!removeButtons[0] || removeButtons[0].style.display != 'inline') {
     labelBlock.style.backgroundColor = '#CAB9B2';
 
+
     if (removeButtons.length < 10) {
       labelBlock.style.borderBottom = '0px solid black';
       showingBlock.style.display = 'block';
     }
+
 
     for (var i = 0; i < removeButtons.length; i++) {
       removeButtons[i].style.display = 'inline';
@@ -346,6 +350,7 @@ function showFilter3(){
 }
 
 //fetch pictures from server when open main page.
+//called when load the main webpage
 function fetchPictures() {
   var url = "/fetchPictures";
   var oReq = new XMLHttpRequest();
@@ -391,6 +396,19 @@ function addToFavorites(id){
   var imageName = imageArray[num].imageName;
   var passVal = 0;
 
+  //find the button, so that we can change the value of it
+  var changeValue = document.getElementById(id);
+  //changing the button text.
+  console.log(changeValue);
+  console.log(changeValue.value);
+  if(control.isFavorite === 1){
+    changeValue.value = "unfavorite";
+    control.isFavorite = 0;
+  }else{
+    changeValue.value = "addToFavorites";
+    control.isFavorite = 1;
+  }
+
   if(imageArray[num].favorite === 0){
       passVal = 1;
       imageArray[num].favorite = 1;
@@ -408,4 +426,40 @@ function addToFavorites(id){
 
   }
   oReq.send();
+}
+
+//only show picture with favorite is 1;
+//when click again go back to show all images.
+function favoriteFilter(){
+  console.log("in favoriteFilter");
+  var buttonVal = document.getElementsByClassName('firstLevel');
+  var allImgs = document.getElementsByClassName('indiPicture');
+  console.log(allImgs);
+  var imageNum = imageArray.length;
+  if(control.showFavorite === 0){
+    for(i = 0; i < imageNum; i++){
+      if(imageArray[i].favorite === 0){
+        //block this images
+        allImgs[imageNum -1 - imageArray[i].id].style.display = "none";
+      }
+    }
+    control.showFavorite = 1;
+    buttonVal[1].textContent = "All";
+  }else{//not sure if this is neeeded
+    for(i = 0; i < imageNum; i++){
+      if(imageArray[i].favorite === 0){
+        //block this images
+        allImgs[imageNum -1 - imageArray[i].id].style.display = "block";
+      }
+    }
+    control.showFavorite = 0;
+    buttonVal[1].textContent = "favorite";
+  }
+
+}
+
+
+function getLabelsFromApi(imageName){
+  // var query = "/query?op=fav&img=" + imageName + "&favorite=" + passVal;
+  var quary = "/query?op=apiLabel&img=" + imageName;
 }
