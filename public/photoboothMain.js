@@ -140,28 +140,29 @@ function createPictureBlock(fileName, id, labels, favorite) {
   setPictureBlock(src, id);
 }
 
+var uploadClick = 0;
 
 function showUpload() {
   var x = document.getElementById('showForUpload');
 
-  if (control.clicked === 0) {
+  if (uploadClick === 0) {
     x.style.display = 'block';
-    control.clicked = 1;
+    uploadClick = 1;
   } else {
     x.style.display = 'none';
-    control.clicked = 0;
+    uploadClick = 0;
   }
 }
 
 function showUpload2() {
   var x = document.getElementById('MobileUpload');
 
-  if (control.clicked === 0) {
+  if (uploadClick === 0) {
     x.style.display = 'block';
-    control.clicked = 1;
+    uploadClick = 1;
   } else {
     x.style.display = 'none';
-    control.clicked = 0;
+    uploadClick = 0;
   }
 }
 
@@ -307,45 +308,40 @@ function changeTag(id) {
   }
 }
 
+var filterClick = 0;
+
 //for the nav filter
 function showFilter(){
-  var clicked = 0;
   var filterMenu = document.getElementById('showForFilter');
   var filterWord = document.getElementById('FilterWord');
   var filter = document.getElementById('filter');
 
-  if (clicked === 0) {
+  if (filterMenu.style.display == 'block') {
+    filterMenu.style.display = 'none';
+    filterWord.style.display = 'none';
+    filter.style.display = 'block';
+  }
+  else {
     filterMenu.style.display = 'block';
     filterWord.style.display = 'block';
     filter.style.display = 'none';
-    clicked = 1;
+    filterClick = 1;
   } 
 }
 
 function showFilter2(){
-  var clicked = 0;
   var filterMenu = document.getElementById('showForFilter');
   var filterWord = document.getElementById('FilterWord');
   var filter = document.getElementById('filter');
-
-  if (clicked === 0) {
-    filterMenu.style.display = 'none';
-    filterWord.style.display = 'none';
-    filter.style.display = 'block';
-    clicked = 1;
-  } 
 }
 
 function showFilter3(){
   var mobilefilter = document.getElementById('MobileFilter');
-  console.log(control.clicked);
 
-  if (control.clicked === 0) {
-    mobilefilter.style.display = 'block';
-    control.clicked = 1;
-  } else {
+  if (mobilefilter.style.display == 'block') {
     mobilefilter.style.display = 'none';
-    control.clicked = 0;
+  } else {
+    mobilefilter.style.display = 'block';
   }
 }
 
