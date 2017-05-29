@@ -1,6 +1,5 @@
 portNum = 10316;
 
-// var annoteteImg = require('annotateImage');
 var control = {
   clicked: 0,
   isFavorite: 1,
@@ -89,7 +88,8 @@ function setPictureBlock(imageFile, imageId, selectedFile) {
     //where upload new image by the user
     if (selectedFile !== undefined) {
       uploadImageToServer(selectedFile, imageId);
-      //request google api labels here?
+      //request google api labels here? not sure.
+      getLabelsFromApi(selectedFile);
     }
     //where pulling image's labels from the server database.
     else {
@@ -427,6 +427,7 @@ function addToFavorites(id){
 }
 
 //only show picture with favorite is 1;
+//when click again go back to show all images.
 function favoriteFilter(){
   console.log("in favoriteFilter");
   var buttonVal = document.getElementsByClassName('firstLevel');
@@ -453,4 +454,10 @@ function favoriteFilter(){
     buttonVal[1].textContent = "favorite";
   }
 
+}
+
+
+function getLabelsFromApi(imageName){
+  // var query = "/query?op=fav&img=" + imageName + "&favorite=" + passVal;
+  var quary = "/query?op=apiLabel&img=" + imageName;
 }
