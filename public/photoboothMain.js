@@ -172,6 +172,9 @@ function changeTemplate(imageFile, imageId) {
     if (ids[i] == 'changeTagBtn') {
       element.onclick = function() {return changeTag(imageId);}
     }
+    if (ids[i] == 'changeFavBtn' && imageArray[imageId].favorite === 1) {
+      element.value = "unfavorite";
+    }
   }
 
 }
@@ -280,7 +283,6 @@ function updateLabelsToDB(num, label) {
     }
     else {
       imageArray[num].labels += ";" + label;
-      console.log(imageArray[num].labels);
     }
     console.log(oReq.status);
   }
@@ -458,17 +460,17 @@ function addToFavorites(id){
   console.log(changeValue);
   console.log(changeValue.value);
   if(control.isFavorite === 1){
-    changeValue.value = "unfavorite";
     control.isFavorite = 0;
   }else{
-    changeValue.value = "addToFavorites";
     control.isFavorite = 1;
   }
 
   if(imageArray[num].favorite === 0){
+    changeValue.value = "unfavorite";
       passVal = 1;
       imageArray[num].favorite = 1;
   } else {
+    changeValue.value = "add to favorites";
       imageArray[num].favorite = 0;
   }
 
