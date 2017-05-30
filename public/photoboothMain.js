@@ -38,8 +38,8 @@ function uploadImageToServer(selectedFile, imageId) {
   formData.append("userfile", selectedFile);
 
   var oReq = new XMLHttpRequest();
+  let pictureBlock = document.getElementsByClassName("indiPicture");
 
-  oReq.open("POST", url);
   oReq.onload = function() {
     //googleCV
 //     var result  = oReq.responseText;
@@ -48,7 +48,6 @@ function uploadImageToServer(selectedFile, imageId) {
 //     unFade(imageId);
 
     if(oReq.status == 500) {
-      let pictureBlock = document.getElementsByClassName("indiPicture");
       pictureBlock[0].remove();
       alert("Upload Error");
     }
@@ -57,6 +56,29 @@ function uploadImageToServer(selectedFile, imageId) {
       getLabelsFromApi(selectedFile.name, imageId);
     }
   }
+
+  // var progress = document.createElement("p");
+  // progress.id = "progress";
+  var progress = document.createElement("div");
+  progress.id = "progress";
+  var bar = document.createElement("div");
+  bar.id = "bar";
+  progress.appendChild(bar);
+  document.getElementById("labels" + imageId).appendChild(progress);
+  bar = document.getElementById("bar");
+
+  oReq.upload.addEventListener("progress", function(e){
+    var pc = parseInt((e.loaded / e.total * 100));
+    document.getElementById("bar").style.width = pc + '%'; 
+  }, false);
+
+  oReq.onreadystatechange = function(e) {
+    if (oReq.readyState == 4) {
+      document.getElementById("progress").remove();
+    }
+  };
+
+  oReq.open("POST", url);
   oReq.send(formData);
 }
 
@@ -563,44 +585,11 @@ function getLabelsFromApi(imageName, id){
   var oReq = new XMLHttpRequest();
   oReq.open("GET", url);
   oReq.onload = function() {
-    console.log(imageName);
-    console.log(oReq.responseText);
     var jsonObj = JSON.parse(oReq.responseText);
-    console.log(oReq.responseText.labels);
-    console.log(jsonObj.labels);
     var labelArr = jsonObj.labels.split(";");
     imageArray[id].labels = labelArr;
     insertLabelsToHtml(id,labelArr);
     return;
-
-    // var labelInput = document.getElementById('labelInput' + id);
-    // //this is for the p tag
-    // var labels = document.getElementById('labels' + id);
-    // var addDiv = makeDiv(labels);
-    // var addImg = makeImg(addDiv);
-    // var addSpan = makeSpan(addDiv);
-    // var labelToEdit = "";
-
-    // //in here, user add a labels, please update databasehere as well
-    // //may need to check if the x[i].value is empty!
-
-    // if (text === undefined) {
-    //   addDiv.getElementsByClassName('removeButton')[0].style.display = 'inline';
-    //   text = labelInput.value;
-    // }
-
-    // addSpan.innerHTML += " " + text;
-
-    // changeTag(id);
-    // changeTag(id);
-    // //delete labels
-    // //please update database here as well
-    // addImg.onclick = function() {
-    //   addDiv.remove();
-    //   changeTag(id);
-    //   changeTag(id);
-    //   removeLabelsFromDB(id, text);
-    // };
   }
   oReq.send();
 }
