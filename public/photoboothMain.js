@@ -4,6 +4,7 @@ var control = {
   clicked: 0,
   isFavorite: 1,
   showFavorite: 0
+  // withLabel: 0
 };
 
 
@@ -330,7 +331,7 @@ function showFilter(){
     filterWord.style.display = 'block';
     filter.style.display = 'none';
     filterClick = 1;
-  } 
+  }
 }
 
 function showFilter2(){
@@ -431,10 +432,8 @@ function addToFavorites(id){
 //only show picture with favorite is 1;
 //when click again go back to show all images.
 function favoriteFilter(){
-  console.log("in favoriteFilter");
   var buttonVal = document.getElementsByClassName('firstLevel');
   var allImgs = document.getElementsByClassName('indiPicture');
-  console.log(allImgs);
   var imageNum = imageArray.length;
   if(control.showFavorite === 0){
     for(i = 0; i < imageNum; i++){
@@ -458,8 +457,46 @@ function favoriteFilter(){
 
 }
 
+function labelFilter(inputLabel){
+  console.log("enter labelFilter method");
+  if(inputLabel === undefined){
+    var getLabel = document.getElementById("Secondfilter").value;
+  }else{
+    var getLabel = inputLabel;
+  }
+  console.log(getLabel);
+  var allImgs = document.getElementsByClassName('indiPicture');
+  var imageNum = imageArray.length;
+  // if(control.withLabel === 0){
+    for(i = 0; i < imageNum; i++){
+      var labels = imageArray[i].labels;
+      var labelArr = labels.split(";");
+      console.log(labelArr);
+
+      for (var j = 0; j < labelArr.length && labelArr.length !== 0; j++) {
+        if(labelArr[j] == getLabel){
+          console.log(labelArr[j] == getLabel);
+          j = labelArr.length;
+        }else{
+          if(j === labelArr.length - 1){
+          allImgs[imageNum -1 - imageArray[i].id].style.display = "none";
+          }
+        }
+      }
+    }
+    // control.withLabel = 1;
+  // }
+}
+
+function mobileLabelFilter(){
+  var getLabel = document.getElementById("Thirdfilter").value;
+  labelFilter(getLabel);
+
+}
+
 
 function getLabelsFromApi(imageName){
   // var query = "/query?op=fav&img=" + imageName + "&favorite=" + passVal;
   var quary = "/query?op=apiLabel&img=" + imageName;
+
 }
