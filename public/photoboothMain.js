@@ -39,9 +39,14 @@ function uploadImageToServer(selectedFile, imageId) {
 
   oReq.open("POST", url);
   oReq.onload = function() {
-    console.log(oReq.responseText);
-    unFade(imageId);
-
+    if(oReq.status == 500) {
+      let pictureBlock = document.getElementsByClassName("indiPicture");
+      pictureBlock[0].remove();
+      alert("Upload Error");
+    }
+    else {
+      unFade(imageId);
+    }
   }
   oReq.send(formData);
 }
@@ -232,7 +237,14 @@ function updateLabelsToDB(num, label) {
   oReq.open("GET", query);
 
   oReq.onload = function() {
-    console.log(oReq.responseText);
+    if (oReq.status == 500) {
+      let imageBlock = document.getElementById('labels'+num);
+      let tagBlocks = imageBlock.getElementsByClassName('deleteLabel');
+      let index = tagBlocks.length - 1;
+      tagBlocks[index].remove();
+      alert("Label Existed");
+    }
+    console.log(oReq.status);
   }
 
   oReq.send();
@@ -494,7 +506,16 @@ function mobileLabelFilter(){
 
 }
 
+function clearFilter() {
+  document.getElementById('Secondfilter').value='';
+}
 
+function clearFilter2() {
+  document.getElementById('Thirdfilter').value='';
+}
+
+
+//not sure this.
 function getLabelsFromApi(imageName){
   // var query = "/query?op=fav&img=" + imageName + "&favorite=" + passVal;
   var quary = "/query?op=apiLabel&img=" + imageName;

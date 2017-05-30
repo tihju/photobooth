@@ -46,9 +46,27 @@ app.post('/', function(request, response) {
 
   // callback for when file is fully recieved
   form.on('end', function() {
-    insertToDB(fileName);
-    response.status(201);
-    response.send("recieved file"); // respond to browser
+    var db = new sqlite3.Database(dbFile);
+    //1 for favorite and 0 for not favorite.
+    var sqlQuery = [fileName, " ", "0"];
+    console.log(sqlQuery);
+    db.serialize(function() {
+      db.run("INSERT INTO Photobooth VALUES  (? ,?, ?) ", sqlQuery, insertCallBack);
+    });
+
+    function insertCallBack(err) {
+      if (err) {
+        response.status(500);
+        response.send(err); // respond to browser
+      }
+      else {
+        response.status(201);
+        response.send("recieved file"); // respond to browser
+      }
+    }
+
+    db.close();
+
   });
 
 });
@@ -68,27 +86,11 @@ app.get('/fetchPictures', function(req, res) {
   }
 });
 
-
-
-function insertToDB(fileName) {
-  var db = new sqlite3.Database(dbFile);
-  //1 for favorite and 0 for not favorite.
-  var sqlQuery = [fileName, " ", "0"];
-  console.log(sqlQuery);
-  db.serialize(function() {
-    db.run("INSERT INTO Photobooth VALUES  (? ,?, ?) ", sqlQuery, errorCallback);
-  })
-  db.close();
-
-}
-
 function errorCallback(err) {
-
   if (err) {
     console.log("error :", err, "\n");
   }
 }
-
 // SERVER CODE
 // Handle request to add a label
 var querystring = require('querystring'); // handy for parsing query strings
@@ -107,11 +109,19 @@ function answer(query, response) {
     console.log("getting labels from " + imageFile);
     if (err) {
       console.log("error: ", err, "\n");
-    } else {
+    }
+    else {
       if (queryObj.op == "add") {
-        db.run('UPDATE Photobooth SET labels = ? WHERE fileName = ?',
+        console.log(data.labels.indexOf(label));
+        if (data.labels.indexOf(label) != -1) {
+          response.status(500);
+          response.send("Label exists");
+        }
+        else {
+          db.run('UPDATE Photobooth SET labels = ? WHERE fileName = ?',
                [data.labels + ";" + label, imageFile],
                updateCallback);
+        }
       }
       else if (queryObj.op == 'remove') {
         db.run('UPDATE Photobooth SET labels = ? WHERE fileName = ?',
