@@ -278,6 +278,10 @@ function updateLabelsToDB(num, label) {
       tagBlocks[index].remove();
       alert("Label Existed");
     }
+    else {
+      imageArray[num].labels += ";" + label;
+      console.log(imageArray[num].labels);
+    }
     console.log(oReq.status);
   }
 
