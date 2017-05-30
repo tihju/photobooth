@@ -19,6 +19,7 @@ function uploadImage() {
   imageArray.push({
     id: imageId,
     showFullMenuClicked: 0,
+    isFilter: 0,
     labels: "",
     imageName: selectedFile.name,
     favorite: 0
@@ -487,11 +488,12 @@ function labelFilter(inputLabel){
 
       for (var j = 0; j < labelArr.length && labelArr.length !== 0; j++) {
         if(labelArr[j] == getLabel){
-          console.log(labelArr[j] == getLabel);
           j = labelArr.length;
+          imageArray[i].isFilter = 1;
         }else{
           if(j === labelArr.length - 1){
           allImgs[imageNum -1 - imageArray[i].id].style.display = "none";
+          imageArray[i].isFilter = 0;
           }
         }
       }
@@ -506,12 +508,30 @@ function mobileLabelFilter(){
 
 }
 
+//need to show all the images back.
 function clearFilter() {
-  document.getElementById('Secondfilter').value='';
+// function clearFilter(clearTest) {
+  // if(clearTest !== undefined){
+  //   document.getElementById(clearTest).value=''
+  // }else{
+  //   document.getElementById('Secondfilter').value='';
+  // }
+  var allImgs = document.getElementsByClassName('indiPicture');
+  var imageNum = imageArray.length;
+    for(i = 0; i < imageNum; i++){
+      console.log(imageArray[i].isFilter);
+      console.log(imageArray[i].id);
+      if(imageArray[i].isFilter === 0){
+        //show this images
+        allImgs[imageNum -1 - imageArray[i].id].style.display = "block";
+      }
+    }
 }
 
 function clearFilter2() {
-  document.getElementById('Thirdfilter').value='';
+  var clearText = document.getElementById('Thirdfilter').value='';
+  // clearFilter(clearText);
+  clearFilter();
 }
 
 
