@@ -1,5 +1,6 @@
 portNum = 10316;
 
+
 var control = {
   clicked: 0,
   isFavorite: 1,
@@ -40,6 +41,7 @@ function uploadImageToServer(selectedFile, imageId) {
 
   oReq.open("POST", url);
   oReq.onload = function() {
+
     if(oReq.status == 500) {
       let pictureBlock = document.getElementsByClassName("indiPicture");
       pictureBlock[0].remove();
@@ -47,6 +49,7 @@ function uploadImageToServer(selectedFile, imageId) {
     }
     else {
       unFade(imageId);
+      getLabelsFromApi(selectedFile.name, imageId);
     }
   }
   oReq.send(formData);
@@ -95,23 +98,28 @@ function setPictureBlock(imageFile, imageId, selectedFile) {
     //where upload new image by the user
     if (selectedFile !== undefined) {
       uploadImageToServer(selectedFile, imageId);
+      //request google api labels here? not sure.
+      // getLabelsFromApi(selectedFile);
     }
     //where pulling image's labels from the server database.
     else {
-      unFade(imageId);
       var labels = imageArray[imageId].labels;
       var labelArr = labels.split(";");
-
-      for (var i = 0; i < labelArr.length; i++) {
-        if (labelArr[i] != "" && labelArr[i] != " ") {
-          addLabels(imageId.toString(), labelArr[i]);
-        }
-      }
+      insertLabelsToHtml(imageId,labelArr);
+      unFade(imageId);
     }
 
   }
   oReq.send();
 
+}
+
+function insertLabelsToHtml(imageId,labelArr){
+  for (var i = 0; i < labelArr.length; i++) {
+    if (labelArr[i] != "" && labelArr[i] != " ") {
+      addLabels(imageId.toString(), labelArr[i]);
+    }
+  }
 }
 
 //this is to give every image a new id for needed
@@ -211,6 +219,7 @@ function addLabels(id, text) {
     addDiv.getElementsByClassName('removeButton')[0].style.display = 'inline';
     text = labelInput.value;
     updateLabelsToDB(num, text);
+    imageArray[num].labels =+ "text;"
   }
 
   addSpan.innerHTML += " " + text;
@@ -224,6 +233,7 @@ function addLabels(id, text) {
     changeTag(num);
     changeTag(num);
     removeLabelsFromDB(num, text);
+
   };
 
 }
@@ -250,6 +260,8 @@ function updateLabelsToDB(num, label) {
 }
 
 function removeLabelsFromDB(num, label) {
+  console.log(imageArray[num].labels);
+  imageArray[num].labels = imageArray[num].labels.replace(label, "");
   console.log(label);
   var imageName = imageArray[num].imageName;
   var query = "/query?op=remove&img=" + imageName + "&label=" + label;
@@ -341,6 +353,8 @@ function showFilter(){
     filterMenu.style.display = 'block';
     filterWord.style.display = 'block';
     filter.style.display = 'none';
+// googleCV
+//    clicked = 1;
     filterClick = 1;
   }
 }
@@ -350,6 +364,7 @@ function showFilter2(){
   var filterWord = document.getElementById('FilterWord');
   var filter = document.getElementById('filter');
 }
+
 
 function showFilter3(){
   var mobilefilter = document.getElementById('MobileFilter');
@@ -383,7 +398,7 @@ function fetchPictures() {
         imageName: jsonArr[i].fileName,
         favorite: jsonArr[i].favorite
       });
-
+      console.log(imageArray.labels);
       //putting image into the html page.
       createPictureBlock(jsonArr[i].fileName, i, jsonArr[i].labels, jsonArr[i].favorite);
 
@@ -496,8 +511,6 @@ function labelFilter(inputLabel){
         }
       }
     }
-    // control.withLabel = 1;
-  // }
 }
 
 function mobileLabelFilter(){
@@ -524,4 +537,28 @@ function clearFilter2() {
   var clearText = document.getElementById('Thirdfilter').value='';
   // clearFilter(clearText);
   clearFilter();
+}
+
+
+function getLabelsFromApi(imageName, id){
+  // var query = "/query?op=fav&img=" + imageName + "&favorite=" + passVal;
+  var url = "/query?op=get&img=" + imageName;
+
+  console.log(imageName);
+  var oReq = new XMLHttpRequest();
+  oReq.open("GET", url);
+  oReq.onload = function() {
+    console.log(imageName);
+    console.log(oReq.responseText);
+    var jsonObj = JSON.parse(oReq.responseText);
+    console.log(oReq.responseText.labels);
+    console.log(jsonObj.labels);
+    var labelArr = jsonObj.labels.split(";");
+    insertLabelsToHtml(id,labelArr);
+    //add labels to imageArray as well.
+      imageArray[id].labels += jsonObj.labels;
+      console.log(imageArray.labels);
+    return;
+  }
+  oReq.send();
 }
