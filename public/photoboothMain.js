@@ -297,6 +297,8 @@ function removeLabelsFromDB(num, label) {
   oReq.open("GET", query);
 
   oReq.onload = function() {
+    imageArray[num].labels = imageArray[num].labels.replace(";" + label, "");
+    console.log(imageArray[num].labels);
     console.log(oReq.responseText);
   }
 
