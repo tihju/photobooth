@@ -564,37 +564,38 @@ function getLabelsFromApi(imageName, id){
     console.log(oReq.responseText.labels);
     console.log(jsonObj.labels);
     var labelArr = jsonObj.labels.split(";");
+    imageArray[id].labels = labelArr;
     insertLabelsToHtml(id,labelArr);
     return;
 
-    var labelInput = document.getElementById('labelInput' + id);
-    //this is for the p tag
-    var labels = document.getElementById('labels' + id);
-    var addDiv = makeDiv(labels);
-    var addImg = makeImg(addDiv);
-    var addSpan = makeSpan(addDiv);
-    var labelToEdit = "";
+    // var labelInput = document.getElementById('labelInput' + id);
+    // //this is for the p tag
+    // var labels = document.getElementById('labels' + id);
+    // var addDiv = makeDiv(labels);
+    // var addImg = makeImg(addDiv);
+    // var addSpan = makeSpan(addDiv);
+    // var labelToEdit = "";
 
-    //in here, user add a labels, please update databasehere as well
-    //may need to check if the x[i].value is empty!
+    // //in here, user add a labels, please update databasehere as well
+    // //may need to check if the x[i].value is empty!
 
-    if (text === undefined) {
-      addDiv.getElementsByClassName('removeButton')[0].style.display = 'inline';
-      text = labelInput.value;
-    }
+    // if (text === undefined) {
+    //   addDiv.getElementsByClassName('removeButton')[0].style.display = 'inline';
+    //   text = labelInput.value;
+    // }
 
-    addSpan.innerHTML += " " + text;
+    // addSpan.innerHTML += " " + text;
 
-    changeTag(id);
-    changeTag(id);
-    //delete labels
-    //please update database here as well
-    addImg.onclick = function() {
-      addDiv.remove();
-      changeTag(id);
-      changeTag(id);
-      removeLabelsFromDB(id, text);
-    };
+    // changeTag(id);
+    // changeTag(id);
+    // //delete labels
+    // //please update database here as well
+    // addImg.onclick = function() {
+    //   addDiv.remove();
+    //   changeTag(id);
+    //   changeTag(id);
+    //   removeLabelsFromDB(id, text);
+    // };
   }
   oReq.send();
 }
