@@ -10,7 +10,7 @@
 }
 
 body{
-  font-family:"GoudyStd","GoudyStd-Italic","GoudyStd-BoldItalic","GoudyStd-Bold"; 
+  font-family:"GoudyStd","GoudyStd-Italic","GoudyStd-BoldItalic","GoudyStd-Bold";
   display: flex;
   flex-direction: column;
   flex-grow: 1;
@@ -309,7 +309,7 @@ img.removeButton{
   padding-left: 10px;
   font-size: 20px;
   border: none;
-  background-color:#885541; 
+  background-color:#885541;
 }
 
 .filterButtonList{
@@ -345,7 +345,7 @@ img.removeButton{
 
 #MobileUpload{
   display: none;
-  background-color: #CAB9B2; 
+  background-color: #CAB9B2;
 }
 
 .MobileUploadList{
@@ -369,8 +369,20 @@ img.removeButton{
   border: none;
 }
 
+#MobileFilter{
+  display: none;
+  background-color: #CAB9B2; 
+  padding: 15px;
+}
+
+.MobileFilterList{
+  display: flex;
+  flex-direction: column;
+  max-width: 150px;
+}
+
 @media (max-width: 480px){
-  
+
   #menuBar,#divide{
     display: none;
   }
@@ -392,7 +404,8 @@ img.removeButton{
 
   .navImage2{
     margin-top: 2px;
-    margin-left: 2px; 
+    margin-left: 2px;
   }
+
 
 }

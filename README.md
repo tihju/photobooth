@@ -1,4 +1,5 @@
-# ECS189H - Assignment 5 - Photobooth (Part One)
+
+# ECS189H - Assignment 6 Photobooth Part Two
 
 ### Group Members:
 - Man Yu Mandy Wong
@@ -22,3 +23,4 @@
    * photoboothMain.css
    * photoboothMain.html
    * photoboothMain.js
+

@@ -1,4 +1,6 @@
+
 portNum = 8066;
+
 /* use the express framwork */
 var express = require("express");
 
@@ -73,7 +75,6 @@ app.get('/fetchPictures', function(req, res) {
 });
 
 
-
 function insertToDB(fileName, completionHandler) {
   var db = new sqlite3.Database(dbFile);
   //1 for favorite and 0 for not favorite.
@@ -100,14 +101,13 @@ function errorCallback(err) {
   }
 }
 
-
-
 // SERVER CODE
 // Handle request to add a label
 var querystring = require('querystring'); // handy for parsing query strings
 
 function answer(query, response) {
   // query looks like: op=add&img=[image filename]&label=[label to add]
+  //query looks like: op=remove&img=[image filename]&label=[label to delete]
   queryObj = querystring.parse(query);
   var label = queryObj.label;
   var imageFile = queryObj.img;
@@ -120,12 +120,14 @@ function answer(query, response) {
     console.log("getting labels from " + imageFile);
     if (err) {
       console.log("error: ", err, "\n");
-    } else {
+    }
+    else {
       if (queryObj.op == "add") {
 
             db.run('UPDATE Photobooth SET labels = ? WHERE fileName = ?',
                  [data.labels + ";" + label, imageFile],
                  updateCallback);
+
 
       }
       else if (queryObj.op == 'remove') {

@@ -1,5 +1,6 @@
 /*css for photobooth.html*/
 
+
 /*the font is not working!*/
 @font-face {
   font-family:"GoudyStd","GoudyStd-Italic","GoudyStd-BoldItalic","GoudyStd-Bold";
@@ -10,6 +11,7 @@
   font-stretch: expanded;
   font-style: normal;
 }
+
 
 body{
   display: flex;
