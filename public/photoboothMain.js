@@ -95,8 +95,6 @@ function setPictureBlock(imageFile, imageId, selectedFile) {
     //where upload new image by the user
     if (selectedFile !== undefined) {
       uploadImageToServer(selectedFile, imageId);
-      //request google api labels here? not sure.
-      getLabelsFromApi(selectedFile);
     }
     //where pulling image's labels from the server database.
     else {
@@ -532,12 +530,4 @@ function clearFilter2() {
   var clearText = document.getElementById('Thirdfilter').value='';
   // clearFilter(clearText);
   clearFilter();
-}
-
-
-//not sure this.
-function getLabelsFromApi(imageName){
-  // var query = "/query?op=fav&img=" + imageName + "&favorite=" + passVal;
-  var quary = "/query?op=apiLabel&img=" + imageName;
-
 }
