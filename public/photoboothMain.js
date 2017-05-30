@@ -1,4 +1,4 @@
-portNum = 8078;
+portNum = 8066;
 
 
 var control = {
@@ -37,7 +37,9 @@ function uploadImageToServer(selectedFile, imageId) {
 
   oReq.open("POST", url);
   oReq.onload = function() {
-    console.log(oReq.responseText);
+    var result  = oReq.responseText;
+    var labelArr = result.split(";");
+    insertLabelsToHtml(imageId,labelArr);
     unFade(imageId);
 
   }
@@ -90,20 +92,23 @@ function setPictureBlock(imageFile, imageId, selectedFile) {
     }
     //where pulling image from the server database.
     else {
-      unFade(imageId);
       var labels = imageArray[imageId].labels;
       var labelArr = labels.split(";");
-
-      for (var i = 0; i < labelArr.length; i++) {
-        if (labelArr[i] != "" && labelArr[i] != " ") {
-          addLabels(imageId.toString(), labelArr[i]);
-        }
-      }
+      insertLabelsToHtml(imageId,labelArr);
+      unFade(imageId);
     }
 
   }
   oReq.send();
 
+}
+
+function insertLabelsToHtml(imageId,labelArr){
+  for (var i = 0; i < labelArr.length; i++) {
+    if (labelArr[i] != "" && labelArr[i] != " ") {
+      addLabels(imageId.toString(), labelArr[i]);
+    }
+  }
 }
 
 //this is to give every image a new id for needed
@@ -324,7 +329,7 @@ function showFilter(){
     filterWord.style.display = 'block';
     filter.style.display = 'none';
     clicked = 1;
-  } 
+  }
 }
 
 function showFilter2(){
@@ -338,7 +343,7 @@ function showFilter2(){
     filterWord.style.display = 'none';
     filter.style.display = 'block';
     clicked = 1;
-  } 
+  }
 }
 
 //fetch pictures from server when open main page.

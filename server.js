@@ -1,9 +1,11 @@
-portNum = 8078;
+portNum = 8066;
 /* use the express framwork */
 var express = require("express");
 
 //for parsing forms and reading in the images
 var formidable = require('formidable');
+
+var googleCV = require('./public/googleCV.js');
 
 //making database
 var sqlite3 = require("sqlite3").verbose(); // use sqlite
@@ -46,9 +48,11 @@ app.post('/', function(request, response) {
 
   // callback for when file is fully recieved
   form.on('end', function() {
-    insertToDB(fileName);
-    response.status(201);
-    response.send("recieved file"); // respond to browser
+    insertToDB(fileName, function(labels){
+      response.status(201);
+      response.send(labels);
+    });
+     // respond to browser
   });
 
 });
@@ -70,24 +74,33 @@ app.get('/fetchPictures', function(req, res) {
 
 
 
-function insertToDB(fileName) {
+function insertToDB(fileName, completionHandler) {
   var db = new sqlite3.Database(dbFile);
   //1 for favorite and 0 for not favorite.
   var sqlQuery = [fileName, " ", "0"];
   console.log(sqlQuery);
   db.serialize(function() {
-    db.run("INSERT INTO Photobooth VALUES  (? ,?, ?) ", sqlQuery, errorCallback);
+    db.run("INSERT INTO Photobooth VALUES  (? ,?, ?) ", sqlQuery, insertCallback);
   })
   db.close();
+
+  function insertCallback(err){
+    if (err) {
+      console.log("error :", err, "\n");
+    }else{
+      googleCV.annotateImage(fileName,completionHandler);
+    }
+  }
 
 }
 
 function errorCallback(err) {
-
   if (err) {
     console.log("error :", err, "\n");
   }
 }
+
+
 
 // SERVER CODE
 // Handle request to add a label
@@ -98,6 +111,7 @@ function answer(query, response) {
   queryObj = querystring.parse(query);
   var label = queryObj.label;
   var imageFile = queryObj.img;
+  console.log(imageFile);
   if (label && imageFile) {
     db.get('SELECT labels FROM Photobooth WHERE fileName = ?', [imageFile], getCallback);
   }
@@ -108,12 +122,14 @@ function answer(query, response) {
       console.log("error: ", err, "\n");
     } else {
       if (queryObj.op == "add") {
-        db.run('UPDATE Photobooth SET labels = ? WHERE fileName = ?', 
-               [data.labels + ";" + label, imageFile],
-               updateCallback);
+
+            db.run('UPDATE Photobooth SET labels = ? WHERE fileName = ?',
+                 [data.labels + ";" + label, imageFile],
+                 updateCallback);
+
       }
       else if (queryObj.op == 'remove') {
-        db.run('UPDATE Photobooth SET labels = ? WHERE fileName = ?', 
+        db.run('UPDATE Photobooth SET labels = ? WHERE fileName = ?',
                [data.labels.replace(';' + label, ''), imageFile],
                updateCallback);
       }
