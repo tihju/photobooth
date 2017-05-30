@@ -1,3 +1,5 @@
+var portNum = 8078;
+
 var request = require('request');
 var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 
@@ -29,7 +31,7 @@ module.exports = {
 
     var jsonObj = JSON.parse(JSON.stringify(requestObject));
 
-    jsonObj.requests[0].image.source.imageUri = 'http://138.68.25.50:8066/assets/' + fileName;
+    jsonObj.requests[0].image.source.imageUri = 'http://138.68.25.50:'+portNum+'/assets/' + fileName;
 
     console.log(jsonObj.requests[0].image.source.imageUri);
 
@@ -52,6 +54,7 @@ module.exports = {
       if ((err) || (APIresponse.statusCode != 200)) {
         console.log("Got API error",APIresponse.statusCode);
       } else {
+        console.log(body.responses[0]);
         APIresponseJSON = body.responses[0];
         var jsonObj = JSON.parse(JSON.stringify(APIresponseJSON));
 
@@ -65,7 +68,7 @@ module.exports = {
         }
 
           console.log(labelArr[i]);
-          var query = "http://138.68.25.50:8066/query?op=add&img=" + fileName + "&label=" +labels;
+          var query = "http://138.68.25.50:"+portNum+"/query?op=add&img=" + fileName + "&label=" +labels;
           request({ // HTTP header stuff
               url: query,
               method: "GET"
