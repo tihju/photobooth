@@ -530,6 +530,7 @@ function clearFilter() {
   // }else{
   //   document.getElementById('Secondfilter').value='';
   // }
+  var clearText = document.getElementById('Secondfilter').value='';
   var allImgs = document.getElementsByClassName('indiPicture');
   var imageNum = imageArray.length;
     for(i = 0; i < imageNum; i++){
@@ -539,6 +540,10 @@ function clearFilter() {
         //show this images
         allImgs[imageNum -1 - imageArray[i].id].style.display = "block";
       }
+    }
+
+    if (control.showFavorite == 1) {
+      favoriteFilter();
     }
 }
 
