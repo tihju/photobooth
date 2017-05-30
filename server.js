@@ -119,15 +119,17 @@ function answer(query, response) {
     }
     else {
       if (queryObj.op == "add") {
-        if (data.labels.indexOf(label) != -1) {
-          response.status(500);
-          response.send("Repeated Label");
+        var labelArr = data.labels.split(";");
+        for (var i = 0; i < labelArr.length; i++) {
+          if (labelArr[i] == label) {
+            response.status(500);
+            response.send("Repeated Label");
+            return;
+          }
         }
-        else {
-          db.run('UPDATE Photobooth SET labels = ? WHERE fileName = ?',
+        db.run('UPDATE Photobooth SET labels = ? WHERE fileName = ?',
                  [data.labels + ";" + label, imageFile],
                  updateCallback);
-        }
       }
       else if (queryObj.op == 'remove') {
         db.run('UPDATE Photobooth SET labels = ? WHERE fileName = ?',
