@@ -508,12 +508,6 @@ function mobileLabelFilter(){
 
 //need to show all the images back.
 function clearFilter() {
-// function clearFilter(clearTest) {
-  // if(clearTest !== undefined){
-  //   document.getElementById(clearTest).value=''
-  // }else{
-  //   document.getElementById('Secondfilter').value='';
-  // }
   var allImgs = document.getElementsByClassName('indiPicture');
   var imageNum = imageArray.length;
     for(i = 0; i < imageNum; i++){
