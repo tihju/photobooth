@@ -54,6 +54,7 @@ function uploadImageToServer(selectedFile, imageId) {
     }
     else {
       unFade(imageId);
+      getLabelsFromApi(selectedFile.name, imageId);
     }
   }
   oReq.send(formData);
@@ -103,7 +104,7 @@ function setPictureBlock(imageFile, imageId, selectedFile) {
     if (selectedFile !== undefined) {
       uploadImageToServer(selectedFile, imageId);
       //request google api labels here? not sure.
-      getLabelsFromApi(selectedFile);
+      // getLabelsFromApi(selectedFile);
     }
     //where pulling image's labels from the server database.
     else {
@@ -549,8 +550,51 @@ function clearFilter2() {
 
 
 //not sure this.
-function getLabelsFromApi(imageName){
+function getLabelsFromApi(imageName, id){
   // var query = "/query?op=fav&img=" + imageName + "&favorite=" + passVal;
-  var quary = "/query?op=apiLabel&img=" + imageName;
+  var url = "/query?op=get&img=" + imageName;
 
+  console.log(imageName);
+  var oReq = new XMLHttpRequest();
+  oReq.open("GET", url);
+  oReq.onload = function() {
+    console.log(imageName);
+    console.log(oReq.responseText);
+    var jsonObj = JSON.parse(oReq.responseText);
+    console.log(oReq.responseText.labels);
+    console.log(jsonObj.labels);
+    var labelArr = jsonObj.labels.split(";");
+    insertLabelsToHtml(id,labelArr);
+    return;
+
+    var labelInput = document.getElementById('labelInput' + id);
+    //this is for the p tag
+    var labels = document.getElementById('labels' + id);
+    var addDiv = makeDiv(labels);
+    var addImg = makeImg(addDiv);
+    var addSpan = makeSpan(addDiv);
+    var labelToEdit = "";
+
+    //in here, user add a labels, please update databasehere as well
+    //may need to check if the x[i].value is empty!
+
+    if (text === undefined) {
+      addDiv.getElementsByClassName('removeButton')[0].style.display = 'inline';
+      text = labelInput.value;
+    }
+
+    addSpan.innerHTML += " " + text;
+
+    changeTag(id);
+    changeTag(id);
+    //delete labels
+    //please update database here as well
+    addImg.onclick = function() {
+      addDiv.remove();
+      changeTag(id);
+      changeTag(id);
+      removeLabelsFromDB(id, text);
+    };
+  }
+  oReq.send();
 }

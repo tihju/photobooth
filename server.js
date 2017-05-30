@@ -50,10 +50,27 @@ app.post('/', function(request, response) {
 
   // callback for when file is fully recieved
   form.on('end', function() {
-    insertToDB(fileName, function(labels){
-      response.status(201);
-      response.send(labels);
-    });
+    var db = new sqlite3.Database(dbFile);
+    //1 for favorite and 0 for not favorite.
+    var sqlQuery = [fileName, " ", "0"];
+    console.log(sqlQuery);
+    db.serialize(function() {
+      db.run("INSERT INTO Photobooth VALUES  (? ,?, ?) ", sqlQuery, insertCallback);
+    })
+    db.close();
+
+    function insertCallback(err){
+      if (err) {
+        response.status(500);
+        response.send("Error");
+        console.log("error :", err, "\n");
+      }else{
+        googleCV.annotateImage(fileName, function(labels) {
+          response.status(201);
+          response.send(labels);
+        });
+      }
+    }
      // respond to browser
   });
 
@@ -74,27 +91,6 @@ app.get('/fetchPictures', function(req, res) {
   }
 });
 
-
-function insertToDB(fileName, completionHandler) {
-  var db = new sqlite3.Database(dbFile);
-  //1 for favorite and 0 for not favorite.
-  var sqlQuery = [fileName, " ", "0"];
-  console.log(sqlQuery);
-  db.serialize(function() {
-    db.run("INSERT INTO Photobooth VALUES  (? ,?, ?) ", sqlQuery, insertCallback);
-  })
-  db.close();
-
-  function insertCallback(err){
-    if (err) {
-      console.log("error :", err, "\n");
-    }else{
-      googleCV.annotateImage(fileName,completionHandler);
-    }
-  }
-
-}
-
 function errorCallback(err) {
   if (err) {
     console.log("error :", err, "\n");
@@ -112,7 +108,7 @@ function answer(query, response) {
   var label = queryObj.label;
   var imageFile = queryObj.img;
   console.log(imageFile);
-  if (label && imageFile) {
+  if (imageFile) {
     db.get('SELECT labels FROM Photobooth WHERE fileName = ?', [imageFile], getCallback);
   }
 
@@ -123,17 +119,24 @@ function answer(query, response) {
     }
     else {
       if (queryObj.op == "add") {
-
-            db.run('UPDATE Photobooth SET labels = ? WHERE fileName = ?',
+        if (data.labels.indexOf(label) != -1) {
+          response.status(500);
+          response.send("Repeated Label");
+        }
+        else {
+          db.run('UPDATE Photobooth SET labels = ? WHERE fileName = ?',
                  [data.labels + ";" + label, imageFile],
                  updateCallback);
-
-
+        }
       }
       else if (queryObj.op == 'remove') {
         db.run('UPDATE Photobooth SET labels = ? WHERE fileName = ?',
                [data.labels.replace(';' + label, ''), imageFile],
                updateCallback);
+      }
+      else if (queryObj.op == 'get') {
+        response.status(200);
+        response.send(data);
       }
     }
   }
