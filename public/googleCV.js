@@ -18,7 +18,7 @@ var requestObject = {
 
 
 // URL containing the API key
-url = 'https://vision.googleapis.com/v1/images:annotate?key=AIzaSyCE5GB9FIFt0a_a_fQpMWn6AQuHOxTskhU';
+url = 'https://vision.googleapis.com/v1/images:annotate?key=apikey';
 
 module.exports = {
 
